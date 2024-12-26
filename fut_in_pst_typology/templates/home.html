@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>KVE DataBank</title>
+  <link rel="icon" href="{% static 'favicon.ico' %}">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <script src="{% static 'js/dop-info.js' %}"></script>
+</head>
+
+<body>
+
+  <h1 onclick="toggleInfoInH1(this)">
+    Банк Данных
+    <div class="dop-info">
+      Данные собраны К.В. Еремченко
+    </div>
+  </h1>
+
+  
+
+  <table class="home">
+    <thead>
+      <tr>
+        <th class="code">Код</th>
+        <th class="lang">Язык {% include "sort_button.html" with i=1 %}</th>
+        <th class="ts">Система времён {% include "sort_button.html" with i=2 %}</th>
+        <th class="tm">FUT {% include "sort_button.html" with i=3 %}</th>
+        <th class="tm">PST {% include "sort_button.html" with i=4 %}</th>
+        <th class="comb">мрф-мрф {% include "sort_button.html" with i=5 %}</th>
+        <th class="comb">мрф-анл {% include "sort_button.html" with i=6 %}</th>
+        <th class="comb">анл-мрф {% include "sort_button.html" with i=7 %}</th>
+        <th class="comb">анл-анл {% include "sort_button.html" with i=8 %}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for l in lang_list %}
+      <tr onclick="toggleInfoInRow(this)">
+        <td class="code">{{l.code}}</td>
+        <td class="lang">
+          <a href='lang?code={{l.code}}'>{{ l.name }}</a>
+          <div class="dop-info">
+              <p><b>Род: </b> {{ l.genus }}</p>
+              <p><b>Семья: </b> {{ l.family }}</p>
+          </div>
+        </td>
+        <td class="ts">{{l.tense_system}}</td>
+        <td class="tm">{{l.fut}}</td>
+        <td class="tm">{{l.pst}}</td>
+        <td class="comb">{{l.mm}}</td>
+        <td class="comb">{{l.ma}}</td>
+        <td class="comb">{{l.am}}</td>
+        <td class="comb">{{l.aa}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% include "footer.html" %}
+</body>
+
+</html>

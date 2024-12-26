@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models.language import Language
+from .models.genus import Genus
+from .models.family import Family
+
+
+admin.site.register(Language)
+admin.site.register(Genus)
+admin.site.register(Family)
