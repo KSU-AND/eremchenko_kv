@@ -21,8 +21,12 @@
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: var(--main-text-color);
+    margin: 0px;
+    padding: 0px;
 }
-
+div.page {
+    display: flex;
+}
 
 a { 
     text-decoration: none; 

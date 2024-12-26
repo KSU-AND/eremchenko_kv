@@ -2,7 +2,7 @@
     <a href="../" style="font-size: 1.8em;margin-right: 16px;">На главную</a>
     <ul>
     {% for i in list %}
-        <li><a href='?code={{i.code}}'>{{ i.name }}</a></li>
+        <li><a href='?name={{i.name}}'>{{ i.name }} ({{ i.language_count }})</a></li>
     {% endfor %}
     </ul>
 </nav>

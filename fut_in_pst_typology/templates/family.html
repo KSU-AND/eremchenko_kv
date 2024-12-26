@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <title>{% if cur_family %} {{ cur_family }} {% else %} DATABANK {% endif %}</title>
+  <link rel="icon" href="{% static 'favicon.ico' %}">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <script src="{% static 'js/dop-info.js' %}"></script>
+</head>
+
+<body>
+  <div class="page">
+    {% include "nav_by_name.html" with list=family_list %}
+    <div class="content">
+      <h1>
+        Семья {{cur_family.name}}
+      </h1>
+      <table class="home">
+        <thead>
+          <tr>
+            <th class="code">Код</th>
+            <th class="lang">Язык</th>
+            <th class="ts">Система времён</th>
+            <th class="tm">FUT</th>
+            <th class="tm">PST</th>
+            <th class="comb">мрф-мрф</th>
+            <th class="comb">анл-мрф</th>
+            <th class="comb">мрф-анл</th>
+            <th class="comb">анл-анл</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for l in cur_family_langs %}
+          <tr>
+            <td class="code">{{l.code}}</td>
+            <td class="lang">
+              <a href='../language?code={{l.code}}'>{{ l.name }}</a>
+            </td>
+            <td class="ts">{{l.tense_system}}</td>
+            <td class="tm">{{l.fut}}</td>
+            <td class="tm">{{l.pst}}</td>
+            <td class="comb">{{l.mm}}</td>
+            <td class="comb">{{l.am}}</td>
+            <td class="comb">{{l.ma}}</td>
+            <td class="comb">{{l.aa}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% include "footer.html" %}
+</body>
+
+</html>
