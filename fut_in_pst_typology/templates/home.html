@@ -30,8 +30,8 @@
         <th class="tm">FUT {% include "sort_button.html" with i=3 %}</th>
         <th class="tm">PST {% include "sort_button.html" with i=4 %}</th>
         <th class="comb">мрф-мрф {% include "sort_button.html" with i=5 %}</th>
-        <th class="comb">мрф-анл {% include "sort_button.html" with i=6 %}</th>
-        <th class="comb">анл-мрф {% include "sort_button.html" with i=7 %}</th>
+        <th class="comb">анл-мрф {% include "sort_button.html" with i=6 %}</th>
+        <th class="comb">мрф-анл {% include "sort_button.html" with i=7 %}</th>
         <th class="comb">анл-анл {% include "sort_button.html" with i=8 %}</th>
       </tr>
     </thead>
@@ -40,7 +40,7 @@
       <tr onclick="toggleInfoInRow(this)">
         <td class="code">{{l.code}}</td>
         <td class="lang">
-          <a href='lang?code={{l.code}}'>{{ l.name }}</a>
+          <a href='language?code={{l.code}}'>{{ l.name }}</a>
           <div class="dop-info">
               <p><b>Род: </b> {{ l.genus }}</p>
               <p><b>Семья: </b> {{ l.family }}</p>
@@ -50,8 +50,8 @@
         <td class="tm">{{l.fut}}</td>
         <td class="tm">{{l.pst}}</td>
         <td class="comb">{{l.mm}}</td>
-        <td class="comb">{{l.ma}}</td>
         <td class="comb">{{l.am}}</td>
+        <td class="comb">{{l.ma}}</td>
         <td class="comb">{{l.aa}}</td>
       </tr>
       {% endfor %}

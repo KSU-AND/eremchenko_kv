@@ -5,12 +5,13 @@ from django.conf.urls.static import static
 from eremchenko_kv import settings
 from eremchenko_kv.views.index import index_page
 from fut_in_pst_typology.views.home import home_page
-
+from fut_in_pst_typology.views.langauge import language_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index_page),
-    path('fut-in-pst-typology/', home_page)
+    path('fut-in-pst-typology/', home_page),
+    path('fut-in-pst-typology/language', language_page),
 ]
 
 if settings.DEBUG:

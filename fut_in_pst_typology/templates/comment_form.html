@@ -1,0 +1,20 @@
+{% load static %}
+
+{% for field in form %}
+<form method="post" id="{{field.html_name}}">
+    {{ field }}
+    <input type="hidden" name="comment_was_edited"/>
+    {% csrf_token %}
+</form>
+<div class="images-div">
+    {% for img in images %}
+        <img src="{{img.image.url}}" class="img-cmnt">
+    {% endfor %}
+    <form method="post" class="add-image-form" id="{{field.html_name}}-image">
+        <input type="file" accept="image/*" name="{{field.html_name}}">
+        <input type="hidden" name="add_image" />
+        <button type="button" class="add-image-button" onclick="postAddImage(this)">upload</button>
+        {% csrf_token %}
+    </form>
+</div>
+{% endfor %}

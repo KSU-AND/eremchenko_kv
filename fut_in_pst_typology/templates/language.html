@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <title>{% if cur_lang %} {{ cur_lang }} {% else %} DATABANK {% endif %}</title>
+  <link rel="icon" href="{% static 'favicon.ico' %}">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'css/add_image.css' %}">
+
+  <script src="{% static 'js/dop-info.js' %}"></script>
+  <script src="{% static 'js/lang.js' %}"></script>
+</head>
+
+<body onload="main();">
+
+  <div style="display: flex;">
+  {% include "nav_by_code.html" with list=lang_list %}
+  <div class="content">
+    <h1 onclick="toggleInfoInH1(this)">
+      Язык {{cur_lang.name}}
+      <div class="dop-info">
+        <table class="home">
+          <thead>
+            <tr>
+              <th class="code">Код</th>
+              <th class="code">Семья</th>
+              <th class="code">Род</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="code">{{cur_lang.code}}</td>
+              <td class="code">
+                <a href='../family?name={{cur_lang.family}}'>
+                  {{cur_lang.family}}
+                </a>
+              </td>
+              <td class="code">
+                <a href='../genus?name={{cur_lang.genus}}'>
+                  {{cur_lang.genus}}
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </h1>
+    <table class="home">
+      <thead>
+        <tr>
+          <th class="ts">Система времён</th>
+          <th class="tm">FUT</th>
+          <th class="tm">PST</th>
+          <th class="comb">мрф-мрф</th>
+          <th class="comb">анл-мрф</th>
+          <th class="comb">мрф-анл</th>
+          <th class="comb">анл-анл</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ts">
+            <form method="post">{% csrf_token %}{{ forms.ts }}</form>
+          </td>
+          <td class="tm">
+            <form method="post">{% csrf_token %}{{ forms.fut }}</form>
+          </td>
+          <td class="tm">
+            <form method="post">{% csrf_token %}{{ forms.pst }}</form>
+          </td>
+          <td class="comb">
+            <form method="post">{% csrf_token %}{{ forms.mm }}</form>
+          </td>
+          <td class="comb">
+            <form method="post">{% csrf_token %}{{ forms.am }}</form>
+          </td>
+          <td class="comb">
+            <form method="post">{% csrf_token %}{{ forms.ma }}</form>
+          </td>
+          <td class="comb">
+            <form method="post">{% csrf_token %}{{ forms.aa }}</form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <form method="post" id="main_comment">{% csrf_token %}{{ forms.main_comment }}</form>
+    
+    <button class="img-zoom-btn" onclick="toggleImageZoom(this)">zoom ❎</button>
+
+    <div id="all_comments">
+    {% for comment in forms.comments %}
+      <div>
+        {% include 'comment_form.html' with form=comment.form images=comment.images %}
+      </div>
+    {% endfor %}
+    </div>
+    
+    <form method="POST" id="add_comment_form">
+      {% csrf_token %}
+      <input type="hidden" name="add_comment" />
+      <div><button type="button" class="add-comment-button" onclick="postAddComment(this)">+</button></div>
+    </form>
+  </div>
+  <div class="test"></div>
+  </div>
+  {% include "footer.html" %}
+</body>
