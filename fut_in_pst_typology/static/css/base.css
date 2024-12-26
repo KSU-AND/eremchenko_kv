@@ -102,8 +102,8 @@ h1 {
 .home tbody tr:nth-child(even){
 	background: var(--secondery-color);
 }
-.home tbody tr:hover {
-    background-color: var(--main-color-ll);
+.home tbody.home tr:hover {
+    background-color: var(--main-color-ll) !important;
 }
 .home .code {
     text-align: center;

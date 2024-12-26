@@ -35,7 +35,7 @@
           <th class="comb">анл-анл {% include "sort_button.html" with i=8 %}</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="home">
         {% for l in lang_list %}
         <tr onclick="toggleInfoInRow(this)">
           <td class="code">{{l.code}}</td>
