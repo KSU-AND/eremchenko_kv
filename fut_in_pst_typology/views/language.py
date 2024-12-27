@@ -71,8 +71,10 @@ def language_page(request):
                 comment = Comment.objects.get(id=comment_id)
             comment_form = CommentForm(instance=comment, prefix=str(comment.id))
             images = CommentImage.objects.filter(comment=comment)
-            return render(request, "comment_form.html", {"form": comment_form,
-                                                        "images": images})
+            return render(request, "comment_form.html", {"comment":{"c":comment,
+                                                                    "form": comment_form,
+                                                                    "images": images}
+                                                                    })
         if request.POST.get("comment_was_edited") is not None:
             print(request.POST)
             comment_ids = [k.split('-')[0] for k in request.POST.keys() 
@@ -85,6 +87,7 @@ def language_page(request):
             
     
     context = {
+        "user": request.user,
         "cur_lang": cur_lang_obj,
         "lang_list": Language.objects.all(),
         "forms":{
@@ -96,7 +99,8 @@ def language_page(request):
             "am": AMForm(instance=cur_lang_obj),
             "aa": AAForm(instance=cur_lang_obj),
             "main_comment": MainCommentForm(instance=cur_lang_obj),
-            "comments": [{"form": CommentForm(instance=c, prefix=str(c.id)),
+            "comments": [{"c": c,
+                          "form": CommentForm(instance=c, prefix=str(c.id)),
                           "images": CommentImage.objects.filter(comment=c),
                           } for c in comments],
         },
