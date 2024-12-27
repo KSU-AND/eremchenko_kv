@@ -99,8 +99,9 @@
       <div><pre class="comment main">{{cur_lang.main_comment}}</pre></div>
     {% endif %}
 
-
+    {% if forms.comments %}
     <button class="img-zoom-btn" onclick="toggleImageZoom(this)">zoom ❎</button>
+    {% endif %}
 
     <div id="all_comments">
     {% for comment in forms.comments %}
@@ -110,11 +111,13 @@
     {% endfor %}
     </div>
     
+    {% if not user.is_anonymous %}
     <form method="POST" id="add_comment_form">
       {% csrf_token %}
       <input type="hidden" name="add_comment" />
       <div><button type="button" class="add-comment-button" onclick="postAddComment(this)">+</button></div>
     </form>
+    {% endif %}
   </div>
   <div class="test"></div>
   </div>
