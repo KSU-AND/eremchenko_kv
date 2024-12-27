@@ -32,10 +32,8 @@ function postAddComment(button) {
     xhr.open('POST', document.URL, true);
     xhr.onload = function() {
         if (xhr.status === 200) {
-            console.log(xhr.response);
             let comment = document.createElement('div');
             comment.innerHTML = xhr.response;
-            console.log(comment.firstElementChild);
             addTextareaInputListener(comment.firstElementChild.firstElementChild);
             document.getElementById('all_comments').appendChild(comment);
             comment.firstElementChild.firstElementChild.focus();

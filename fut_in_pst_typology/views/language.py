@@ -52,12 +52,12 @@ def language_page(request):
             main_comment_form.save()
             return HttpResponse(status=200)
         if request.POST.get("add_comment") is not None:
-            print(request.POST)
             new_comment = Comment.objects.create(lang=cur_lang_obj)
             new_comment_form = CommentForm(instance=new_comment, prefix=str(new_comment.id))
-            return render(request, "comment_form.html", {"form": new_comment_form,
-                                                         "images": []
-                                                         })
+            return render(request, "comment_form.html", {"comment":{"c": new_comment,
+                                                                    "form": new_comment_form,
+                                                                    "images": []}
+                                                                    })
         if request.POST.get("add_image") is not None:
             if request.FILES:
                 comment_ids = [k for k in request.FILES.keys() if k.endswith("comment")]
@@ -71,12 +71,11 @@ def language_page(request):
                 comment = Comment.objects.get(id=comment_id)
             comment_form = CommentForm(instance=comment, prefix=str(comment.id))
             images = CommentImage.objects.filter(comment=comment)
-            return render(request, "comment_form.html", {"comment":{"c":comment,
+            return render(request, "comment_form.html", {"comment":{"c": comment,
                                                                     "form": comment_form,
                                                                     "images": images}
                                                                     })
         if request.POST.get("comment_was_edited") is not None:
-            print(request.POST)
             comment_ids = [k.split('-')[0] for k in request.POST.keys() 
                            if not k.startswith("csrf") and k.endswith("comment")]
             for comment_id in comment_ids:
