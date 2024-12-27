@@ -61,37 +61,51 @@
       <tbody>
         <tr>
           <td class="ts">
-            <form method="post">{% csrf_token %}{{ forms.ts }}</form>
+            {% if user.is_anonymous %} {{cur_lang.tense_system}}
+            {% else %}<form method="post">{% csrf_token %}{{ forms.ts }}</form>{% endif %}
           </td>
           <td class="tm">
-            <form method="post">{% csrf_token %}{{ forms.fut }}</form>
+            {% if user.is_anonymous %} {{cur_lang.fut}}
+            {% else %}<form method="post">{% csrf_token %}{{ forms.fut }}</form>{% endif %}
           </td>
           <td class="tm">
-            <form method="post">{% csrf_token %}{{ forms.pst }}</form>
+            {% if user.is_anonymous %} {{cur_lang.pst}}
+            {% else %}<form method="post">{% csrf_token %}{{ forms.pst }}</form>{% endif %}
           </td>
           <td class="comb">
-            <form method="post">{% csrf_token %}{{ forms.mm }}</form>
+            {% if user.is_anonymous %} {{cur_lang.mm}}
+            {% else %}<form method="post">{% csrf_token %}{{ forms.mm }}</form>{% endif %}
           </td>
           <td class="comb">
-            <form method="post">{% csrf_token %}{{ forms.am }}</form>
+            {% if user.is_anonymous %} {{cur_lang.am}}
+            {% else %}<form method="post">{% csrf_token %}{{ forms.am }}</form>{% endif %}
           </td>
           <td class="comb">
-            <form method="post">{% csrf_token %}{{ forms.ma }}</form>
+            {% if user.is_anonymous %} {{cur_lang.ma}}
+            {% else %}<form method="post">{% csrf_token %}{{ forms.ma }}</form>{% endif %}
           </td>
           <td class="comb">
-            <form method="post">{% csrf_token %}{{ forms.aa }}</form>
+            {% if user.is_anonymous %} {{cur_lang.aa}}
+            {% else %}<form method="post">{% csrf_token %}{{ forms.aa }}</form>{% endif %}
           </td>
         </tr>
       </tbody>
     </table>
-    <form method="post" id="main_comment">{% csrf_token %}{{ forms.main_comment }}</form>
-    
+
+
+    {% if not user.is_anonymous %}
+      <form method="post" id="main_comment">{% csrf_token %}{{ forms.main_comment }}</form>
+    {% else %}
+      <div><pre class="comment main">{{cur_lang.main_comment}}</pre></div>
+    {% endif %}
+
+
     <button class="img-zoom-btn" onclick="toggleImageZoom(this)">zoom ❎</button>
 
     <div id="all_comments">
     {% for comment in forms.comments %}
       <div>
-        {% include 'comment_form.html' with form=comment.form images=comment.images %}
+        {% include 'comment_form.html' with comment=comment user=user%}
       </div>
     {% endfor %}
     </div>

@@ -1,20 +1,25 @@
-{% load static %}
-
-{% for field in form %}
+{% for field in comment.form %}
+{% if not user.is_anonymous %}
 <form method="post" id="{{field.html_name}}">
-    {{ field }}
-    <input type="hidden" name="comment_was_edited"/>
-    {% csrf_token %}
+  {{ field }}
+  <input type="hidden" name="comment_was_edited" />
+  {% csrf_token %}
 </form>
+{% else %}
+<div><pre class="comment">{{comment.c.comment}}</pre></div>
+{% endif %}
+
 <div class="images-div">
-    {% for img in images %}
-        <img src="{{img.image.url}}" class="img-cmnt">
-    {% endfor %}
-    <form method="post" class="add-image-form" id="{{field.html_name}}-image">
-        <input type="file" accept="image/*" name="{{field.html_name}}">
-        <input type="hidden" name="add_image" />
-        <button type="button" class="add-image-button" onclick="postAddImage(this)">upload</button>
-        {% csrf_token %}
-    </form>
+  {% for img in comment.images %}
+  <img src="{{img.image.url}}" class="img-cmnt">
+  {% endfor %}
+  {% if not user.is_anonymous %}
+  <form method="post" class="add-image-form" id="{{field.html_name}}-image">
+    <input type="file" accept="image/*" name="{{field.html_name}}">
+    <input type="hidden" name="add_image" />
+    <button type="button" class="add-image-button" onclick="postAddImage(this)">upload</button>
+    {% csrf_token %}
+  </form>
+  {% endif %}
 </div>
 {% endfor %}
