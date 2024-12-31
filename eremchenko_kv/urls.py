@@ -12,10 +12,15 @@ from fut_in_pst_typology.views.genus import genus_page
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index_page),
-    path('fut-in-pst-typology/', home_page),
-    path('fut-in-pst-typology/language/', language_page),
-    path('fut-in-pst-typology/family/', family_page),
-    path('fut-in-pst-typology/genus/', genus_page),
+    
+    path('fut-in-pst-typology/', home_page, name="fpt"),
+    path('fut-in-pst-typology/statistics', home_page, name="fpt.statistics"),
+    path('fut-in-pst-typology/theory', home_page, name="fpt.theory"),
+    path('fut-in-pst-typology/summary/', home_page, name="fpt.summary"),
+    
+    path('fut-in-pst-typology/language/', language_page, name="fpt.language"),
+    path('fut-in-pst-typology/family/', family_page, name="fpt.family"),
+    path('fut-in-pst-typology/genus/', genus_page, name="fpt.genus"),
 ]
 
 if settings.DEBUG:
