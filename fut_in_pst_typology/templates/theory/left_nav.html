@@ -1,0 +1,12 @@
+<nav class="left-nav">
+    <div class="left-nav-container">
+        <summary>Теоретические блоки</summary>
+        <ul>
+        {% for i in theory_blocks %}
+            <li>
+                <a href='{% url "fpt.theory.view" %}?id={{i.id}}'>{{ i.title }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</nav>

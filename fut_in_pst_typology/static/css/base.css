@@ -1,40 +1,3 @@
-:root {
-    /* --main-color-ll: #7ECBD8;
-    --main-color-l: #37B6CE;
-	--main-color: #04859D;
-    --main-color-d: #206876;
-    --main-color-dd: #015666; */
-    --main-color-ll: #B4B68F;
-    --main-color-l: #B2B78F;
-	--main-color: #626A37;
-    --main-color-d: #364421;
-    --main-color-dd: #263516;
-
-    --secondery-color: #f8f8f8;
-    --secondery-color-d: #D9D6B5;
-    --secondery-color-dd: #B3AE90;
-    --secondery-color-dd: #D9D6B5;
-
-    --main-text-color: #222;
-    --main-text-color-l: #333;
-    --main-text-color-ll: #444;
-
-    --green-color-ll: #65E080;
-    --green-color-l: #38E05D;
-    --green-color: #00C12B;
-    --green-color-d: #24913C;
-    --green-color-dd: #007D1C;
-}
-::-webkit-scrollbar {
-    display: none;
-}
-body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: var(--main-text-color);
-    margin: 0px;
-    padding: 0px;
-}
-
 a { 
     text-decoration: none; 
     border-radius: 8px;
@@ -222,14 +185,6 @@ table.home .dop-info {
 .add-comment-button:hover {
     border: 2px solid var(--main-color-dd);
     background-color: var(--main-color-ll);
-}
-
-footer {
-    background-color: var(--main-color-d);
-    text-align: center;
-    color: white;
-    padding: 1%;
-    margin-top: 16px;
 }
 
 .button-sort-table {

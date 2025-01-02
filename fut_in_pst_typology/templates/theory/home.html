@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Теоретический бэкграунд
+{% endblock %}
+
+{% block aside %}
+{% endblock %}
+
+
+{% block content %}
+  {% for i in theory_blocks  %}
+    <h2><a href="{% url 'fpt.theory.view' %}?id={{i.id}}">{{i.title}}</a></h2>
+    <div><pre> {{i.outline}}</pre></div>
+    <div><pre> {{i.text}}</pre></div>
+  {% endfor %}
+{% endblock %}
