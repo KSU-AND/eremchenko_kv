@@ -1,0 +1,20 @@
+from django.urls import path
+
+from fut_in_pst_typology.views.home import home_page
+from fut_in_pst_typology.views.theory import theory_page
+
+from fut_in_pst_typology.views.language import language_page
+from fut_in_pst_typology.views.family import family_page
+from fut_in_pst_typology.views.genus import genus_page
+
+
+fpturlpatterns = [
+    path('', home_page, name="fpt"),
+    path('statistics/', home_page, name="fpt.statistics"),
+    path('theory/', theory_page, name="fpt.theory"),
+    path('summary/', home_page, name="fpt.summary"),
+    
+    path('language/', language_page, name="fpt.language"),
+    path('family/', family_page, name="fpt.family"),
+    path('genus/', genus_page, name="fpt.genus"),
+]
