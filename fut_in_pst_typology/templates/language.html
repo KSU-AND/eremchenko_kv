@@ -1,125 +1,118 @@
-<!DOCTYPE html>
-{% load static %}
+{% extends 'base.html' %}
 
-<head>
-  <meta charset="UTF-8">
-  <title>{% if cur_lang %} {{ cur_lang }} {% else %} DATABANK {% endif %}</title>
-  <link rel="icon" href="{% static 'favicon.ico' %}">
-  <link rel="stylesheet" href="{% static 'css/base.css' %}">
-  <link rel="stylesheet" href="{% static 'css/add_image.css' %}">
-
-  <script src="{% static 'js/dop-info.js' %}"></script>
-  <script src="{% static 'js/lang.js' %}"></script>
-</head>
-
-<body onload="main();">
-
-  <div class="page">
-  {% include "nav_by_code.html" with list=lang_list %}
-  <div class="content">
-    <h1 onclick="toggleInfoInH1(this)">
-      Язык {{cur_lang.name}}
-      <div class="dop-info">
-        <table class="home">
-          <thead>
-            <tr>
-              <th class="code">Код</th>
-              <th class="code">Семья</th>
-              <th class="code">Род</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="code">{{cur_lang.code}}</td>
-              <td class="code">
-                <a href='../family?name={{cur_lang.family}}'>
-                  {{cur_lang.family}}
-                </a>
-              </td>
-              <td class="code">
-                <a href='../genus?name={{cur_lang.genus}}'>
-                  {{cur_lang.genus}}
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </h1>
-    <table class="home">
-      <thead>
-        <tr>
-          <th class="ts">Система времён</th>
-          <th class="tm">FUT</th>
-          <th class="tm">PST</th>
-          <th class="comb">мрф-мрф</th>
-          <th class="comb">анл-мрф</th>
-          <th class="comb">мрф-анл</th>
-          <th class="comb">анл-анл</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="ts">
-            {% if user.is_anonymous %} {{cur_lang.tense_system}}
-            {% else %}<form method="post">{% csrf_token %}{{ forms.ts }}</form>{% endif %}
-          </td>
-          <td class="tm">
-            {% if user.is_anonymous %} {{cur_lang.fut}}
-            {% else %}<form method="post">{% csrf_token %}{{ forms.fut }}</form>{% endif %}
-          </td>
-          <td class="tm">
-            {% if user.is_anonymous %} {{cur_lang.pst}}
-            {% else %}<form method="post">{% csrf_token %}{{ forms.pst }}</form>{% endif %}
-          </td>
-          <td class="comb">
-            {% if user.is_anonymous %} {{cur_lang.mm}}
-            {% else %}<form method="post">{% csrf_token %}{{ forms.mm }}</form>{% endif %}
-          </td>
-          <td class="comb">
-            {% if user.is_anonymous %} {{cur_lang.am}}
-            {% else %}<form method="post">{% csrf_token %}{{ forms.am }}</form>{% endif %}
-          </td>
-          <td class="comb">
-            {% if user.is_anonymous %} {{cur_lang.ma}}
-            {% else %}<form method="post">{% csrf_token %}{{ forms.ma }}</form>{% endif %}
-          </td>
-          <td class="comb">
-            {% if user.is_anonymous %} {{cur_lang.aa}}
-            {% else %}<form method="post">{% csrf_token %}{{ forms.aa }}</form>{% endif %}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+{% block title %}
+{{ cur_lang }}
+{% endblock %}
 
 
-    {% if not user.is_anonymous %}
-      <form method="post" id="main_comment">{% csrf_token %}{{ forms.main_comment }}</form>
-    {% else %}
-      <div><pre class="comment main">{{cur_lang.main_comment}}</pre></div>
-    {% endif %}
-
-    {% if forms.comments %}
-    <button class="img-zoom-btn" onclick="toggleImageZoom(this)">zoom ❎</button>
-    {% endif %}
-
-    <div id="all_comments">
-    {% for comment in forms.comments %}
-      <div>
-        {% include 'comment_form.html' with comment=comment user=user%}
-      </div>
-    {% endfor %}
+{% block content %}
+<div class="content">
+  <h1 class="title" onclick="toggleInfoInH1(this)">
+    <p>Язык {{cur_lang.name}}</p>
+    <div class="dop-info">
+      <table>
+        <thead>
+          <tr>
+            <th>Род</th>
+            <th>Семья</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <a href='{% url "fpt.genus" %}?name={{cur_lang.genus.name}}'>
+                {{cur_lang.genus.name}}
+              </a>
+            </td>
+            <td>
+              <a href='{% url "fpt.family" %}?name={{cur_lang.family.name}}'>
+                {{cur_lang.family.name}}
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    
+  </h1>
+
+  <table class="language-info">
+    <thead>
+      <tr>
+        <th class="">Система времён</th>
+        <th class="">FUT</th>
+        <th class="">PST</th>
+        <th class="">мрф-мрф</th>
+        <th class="">анл-мрф</th>
+        <th class="">мрф-анл</th>
+        <th class="">анл-анл</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="">
+          {% if user.is_anonymous %} {{cur_lang.tense_system}}
+          {% else %}<form method="post">{% csrf_token %}{{ forms.ts }}</form>{% endif %}
+        </td>
+        <td class="">
+          {% if user.is_anonymous %} {{cur_lang.fut}}
+          {% else %}<form method="post">{% csrf_token %}{{ forms.fut }}</form>{% endif %}
+        </td>
+        <td class="">
+          {% if user.is_anonymous %} {{cur_lang.pst}}
+          {% else %}<form method="post">{% csrf_token %}{{ forms.pst }}</form>{% endif %}
+        </td>
+        <td class="">
+          {% if user.is_anonymous %} {{cur_lang.mm}}
+          {% else %}<form method="post">{% csrf_token %}{{ forms.mm }}</form>{% endif %}
+        </td>
+        <td class="">
+          {% if user.is_anonymous %} {{cur_lang.am}}
+          {% else %}<form method="post">{% csrf_token %}{{ forms.am }}</form>{% endif %}
+        </td>
+        <td class="">
+          {% if user.is_anonymous %} {{cur_lang.ma}}
+          {% else %}<form method="post">{% csrf_token %}{{ forms.ma }}</form>{% endif %}
+        </td>
+        <td class="">
+          {% if user.is_anonymous %} {{cur_lang.aa}}
+          {% else %}<form method="post">{% csrf_token %}{{ forms.aa }}</form>{% endif %}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="main-comment-div">
+    <h6>Основной комментарий</h6>
     {% if not user.is_anonymous %}
-    <form method="POST" id="add_comment_form">
-      {% csrf_token %}
-      <input type="hidden" name="add_comment" />
-      <div><button type="button" class="add-comment-button" onclick="postAddComment(this)">+</button></div>
-    </form>
+    <form method="post" id="main_comment">{% csrf_token %}{{ forms.main_comment }}</form>
+    {% else %}
+    <div>
+      <pre class="comment main">{{cur_lang.main_comment}}</pre>
+    </div>
     {% endif %}
   </div>
-  <div class="test"></div>
+
+  <div id="all_comments">
+    {% for comment in forms.comments %}
+    {% include 'comment_form.html' %}
+    {% endfor %}
   </div>
-  {% include "footer.html" %}
-</body>
+
+  {% if not user.is_anonymous %}
+  <form method="POST" id="add_comment_form">
+    {% csrf_token %}
+    <input type="hidden" name="add_comment" />
+    <div>
+      <button type="button" class="add-comment-button" onclick="postAddComment(this)">+</button>
+    </div>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+  main();
+</script>
+{% endblock %}

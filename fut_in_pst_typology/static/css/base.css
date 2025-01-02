@@ -1,15 +1,23 @@
 :root {
-    --main-color-ll: #7ECBD8;
+    /* --main-color-ll: #7ECBD8;
     --main-color-l: #37B6CE;
 	--main-color: #04859D;
     --main-color-d: #206876;
-    --main-color-dd: #015666;
+    --main-color-dd: #015666; */
+    --main-color-ll: #B4B68F;
+    --main-color-l: #B2B78F;
+	--main-color: #626A37;
+    --main-color-d: #364421;
+    --main-color-dd: #263516;
 
-    --secondery-color: #EEE;
-    --secondery-color-d: #DDD;
-    --secondery-color-dd: #CCC;
+    --secondery-color: #f8f8f8;
+    --secondery-color-d: #D9D6B5;
+    --secondery-color-dd: #B3AE90;
+    --secondery-color-dd: #D9D6B5;
 
     --main-text-color: #222;
+    --main-text-color-l: #333;
+    --main-text-color-ll: #444;
 
     --green-color-ll: #65E080;
     --green-color-l: #38E05D;
@@ -17,22 +25,21 @@
     --green-color-d: #24913C;
     --green-color-dd: #007D1C;
 }
-
+::-webkit-scrollbar {
+    display: none;
+}
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: var(--main-text-color);
     margin: 0px;
     padding: 0px;
 }
-div.page {
-    display: flex;
-}
 
 a { 
     text-decoration: none; 
     border-radius: 8px;
     padding: 4px 8px;
-    display: block;
+    display: inline-block;
 }
 a:link, a:visited { 
     color: var(--main-color); 
@@ -42,16 +49,18 @@ a:hover {
     color: white;
 }
 
-nav {
-    width: 270px;
-    background-color: #04859D;
-    padding: 16px 0px 16px 16px;
+
+/* TOP NAVIGATION BAR */
+
+nav.top-nav {    
+    background-color: var(--main-color-d);
+    padding: 16px;
     color: white;
-}
-nav.top-nav {
     width: 100%;
-    padding: 1px 16px;
+    padding: 0px 0px;
     list-style: none;
+    font-weight: bold;
+    font-size: 0.9em;
 }
 nav.top-nav li{
     padding: 4px 8px;
@@ -61,18 +70,18 @@ nav.top-nav ul{
     margin: 0px;
     padding: 8px;
 }
-nav a:link, nav a:visited {
+nav.top-nav a:link, nav.top-nav a:visited {
     color: white;
 }
+
+
+
 h1 a:link, h1 a:visited {
     color: white;
 }
-.content {
-    flex: 1;
-    padding: 20px;
-}
 
-h1 {
+
+h1.home {
 	text-align: center;
     background-color: var(--main-color);
 	color: white;
@@ -82,103 +91,92 @@ h1 {
     cursor: pointer;
 }
 
-.home{
+table.home{
 	width: 100%;
 	margin-top: 20px;
     border-collapse: collapse;
 }
-.home thead tr {
+table.home thead tr {
 	border-radius: 8px;
     background-color: var(--secondery-color-dd);
     position: sticky;
     top: 0px;
 }
-.home thead tr th { 
+table.home thead tr th { 
     padding: 8px; 
 }
-.home thead tr th:first-child { 
+table.home thead tr th:first-child { 
     border-radius: 8px 0 0 8px;
 }
-.home thead tr th:last-child { 
+table.home thead tr th:last-child { 
     border-radius: 0 8px 8px 0;
 }
 
-.home tbody td {
+table.home tbody td {
 	text-align: left;
 	padding: 8px 8px;
 	vertical-align: top;
 }
-.home tbody tr td:first-child { 
+table.home tbody tr td:first-child { 
     border-radius: 8px 0 0 8px;
 }
-.home tbody tr td:last-child { 
+table.home tbody tr td:last-child { 
     border-radius: 0 8px 8px 0;
 }
-.home tbody tr:nth-child(even){
+table.home tbody tr:nth-child(even){
 	background: var(--secondery-color);
 }
-.home tbody.home tr:hover {
+table.home tbody table.home tr:hover {
     background-color: var(--main-color-ll) !important;
 }
-.home .code {
+table.home .code {
     text-align: center;
     padding: 12px;
     width: 5%;
 }
 
-.home .lang {
+table.home .lang {
     text-align: left;
     width: 15%;
 }
-.home thead .lang {
+table.home thead .lang {
     padding: 8px 16px;
 }
-.home .ts {
+table.home .ts {
     text-align: center;
     padding: 12px;
     width: 15%;
 }
-.home .tm {
+table.home .tm {
     text-align: center;
     padding: 12px;
     width: 5%;
 }
-.home .tm:nth-child(even){
+table.home .tm:nth-child(even){
 	border-left: 3px solid var(--main-color);
 }
-.home .tm:nth-child(odd){
+table.home .tm:nth-child(odd){
 	border-right: 3px solid var(--main-color);
 }
 
-.home .comb {
+table.home .comb {
     text-align: center;
     padding: 12px;
     width: 10%;
 }
 
 
-.home .dop-info {
+table.home .dop-info {
     font-size: 0.8em;
     padding: 0px 8px;
     display: none;
-}
-
-h1 .dop-info {
-    font-size: 0.5em;
-    padding: 0px 8px;
-    display: none;
-}
-.content tbody tr:hover {
-    background-color: white;
-}
-.content h1 tbody tr:hover {
-    background-color: var(--main-color);
 }
 
 .select-in-table {
     border-radius: 16px;
     border: var(--main-color-dd) solid 2px;
     padding: 2px 8px;
+    max-width: 100%;
 }
 .select-in-table:hover {
     background-color: var(--main-color-dd);
@@ -209,7 +207,7 @@ h1 .dop-info {
 }
 
 .add-comment-button {
-    margin-top: 5px;
+    margin: 16px 0px;
     background-color: var(--main-color-ll);
     color: var(--main-text-color);
     padding: 8px;
@@ -227,10 +225,11 @@ h1 .dop-info {
 }
 
 footer {
-    background-color: var(--main-color);
+    background-color: var(--main-color-d);
     text-align: center;
     color: white;
     padding: 1%;
+    margin-top: 16px;
 }
 
 .button-sort-table {

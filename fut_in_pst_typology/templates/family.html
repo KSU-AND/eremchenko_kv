@@ -1,56 +1,50 @@
-<!DOCTYPE html>
-{% load static %}
+{% extends 'base.html' %}
 
-<head>
-  <meta charset="UTF-8">
-  <title>{% if cur_family %} {{ cur_family }} {% else %} DATABANK {% endif %}</title>
-  <link rel="icon" href="{% static 'favicon.ico' %}">
-  <link rel="stylesheet" href="{% static 'css/base.css' %}">
-  <script src="{% static 'js/dop-info.js' %}"></script>
-</head>
+{% block title %}
+  {% if cur_family %} {{ cur_family }} {% else %} Семья? {% endif %}
+{% endblock %}
 
-<body>
-  <div class="page">
-    {% include "nav_by_name.html" with list=family_list %}
-    <div class="content">
-      <h1>
-        Семья {{cur_family.name}}
-      </h1>
-      <table class="home">
-        <thead>
-          <tr>
-            <th class="code">Код</th>
-            <th class="lang">Язык</th>
-            <th class="ts">Система времён</th>
-            <th class="tm">FUT</th>
-            <th class="tm">PST</th>
-            <th class="comb">мрф-мрф</th>
-            <th class="comb">анл-мрф</th>
-            <th class="comb">мрф-анл</th>
-            <th class="comb">анл-анл</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for l in cur_family_langs %}
-          <tr>
-            <td class="code">{{l.code}}</td>
-            <td class="lang">
-              <a href='../language?code={{l.code}}'>{{ l.name }}</a>
-            </td>
-            <td class="ts">{{l.tense_system}}</td>
-            <td class="tm">{{l.fut}}</td>
-            <td class="tm">{{l.pst}}</td>
-            <td class="comb">{{l.mm}}</td>
-            <td class="comb">{{l.am}}</td>
-            <td class="comb">{{l.ma}}</td>
-            <td class="comb">{{l.aa}}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
-  {% include "footer.html" %}
-</body>
+{% block content%}
+<div class="content">
+  <h1>
+    Семья {{cur_family.name}}
+  </h1>
 
-</html>
+  <table class="home">
+    <thead>
+      <tr>
+        <th class="code">Код</th>
+        <th class="lang">Язык {% include "sort_button.html" with i=1 %}</th>
+        <th class="ts">Система времён {% include "sort_button.html" with i=2 %}</th>
+        <th class="tm">FUT {% include "sort_button.html" with i=3 %}</th>
+        <th class="tm">PST {% include "sort_button.html" with i=4 %}</th>
+        <th class="comb">мрф-мрф {% include "sort_button.html" with i=5 %}</th>
+        <th class="comb">анл-мрф {% include "sort_button.html" with i=6 %}</th>
+        <th class="comb">мрф-анл {% include "sort_button.html" with i=7 %}</th>
+        <th class="comb">анл-анл {% include "sort_button.html" with i=8 %}</th>
+      </tr>
+    </thead>
+    <tbody class="home">
+      {% for l in cur_family_langs %}
+      {% url 'fpt.language' as lang_url %}
+      <tr onclick="toggleInfoInRow(this)">
+        <td class="code">{{l.code}}</td>
+        <td class="lang">
+          <a href='{{lang_url}}?code={{l.code}}'>{{ l.name }}</a>
+          <div class="dop-info">
+              <p><b>Род: </b> {{ l.genus }}</p>
+          </div>
+        </td>
+        <td class="ts">{{l.tense_system}}</td>
+        <td class="tm">{{l.fut}}</td>
+        <td class="tm">{{l.pst}}</td>
+        <td class="comb">{{l.mm}}</td>
+        <td class="comb">{{l.am}}</td>
+        <td class="comb">{{l.ma}}</td>
+        <td class="comb">{{l.aa}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

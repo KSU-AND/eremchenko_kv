@@ -1,0 +1,34 @@
+<nav class="left-nav">
+    <div class="left-nav-container">
+        <summary>Языки</summary>
+        <ul>
+        {% for i in languages %}
+            <li>
+                <a href='{% url "fpt.language" %}?code={{i.code}}'>{{ i.name }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+    
+    <div class="left-nav-container">
+        <summary>Рода</summary>
+        <ul>
+        {% for i in genuses %}
+            <li>
+                <a href='{% url "fpt.genus" %}?name={{i.name}}'>{{ i.name }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+        
+    <div class="left-nav-container">
+        <summary>Семьи</summary>
+        <ul>
+        {% for i in families %}
+            <li>
+                <a href='{% url "fpt.family" %}?name={{i.name}}'>{{ i.name }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</nav>

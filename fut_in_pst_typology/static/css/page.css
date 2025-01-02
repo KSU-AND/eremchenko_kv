@@ -1,0 +1,196 @@
+@import "base.css";
+
+body {
+    margin: 0;
+}
+main:has(aside) {
+    display: grid;
+    @media screen and (min-width: 850px) {
+        grid-template-columns: 220px auto;
+    }
+}
+
+
+/* LEFT NAVIGATION BAR */
+
+.left-nav {
+    padding: 8px;
+    margin: 16px 0px;
+    border-radius: 0px 16px 16px 0px;
+    background-color: var(--secondery-color);
+    --border-width: 4px;
+    display: grid;
+}
+.left-nav-container {
+    outline: var(--border-width) solid var(--secondery-color-dd);
+    outline-offset: calc(0px - var(--border-width));
+    border-radius: 8px;
+    padding-bottom: var(--border-width);
+    margin: 8px 8px 8px 0px;
+}
+.left-nav summary {
+    border-radius: 8px;
+    background-color: var(--secondery-color-dd);
+    color: var(--main-text-color);
+    padding: 4px 8px;
+}
+.left-nav ul {
+    padding-inline-start: 0px;
+    max-height: 25vh;
+    overflow-y: auto;
+    margin: 0px var(--border-width);
+}
+.left-nav li {
+    list-style-type: none;
+    display: flex;
+}
+.left-nav a {
+    color: var(--main-text-color-ll);
+    flex: 1;
+}
+.left-nav a:hover {
+    background-color: var(--secondery-color-d);
+    color: var(--main-text-color-ll)
+}
+
+
+/* CONTENT */
+
+.content {
+    justify-self: center;
+    padding: 0 2%;
+    width: 96%;
+}
+
+@media (max-width: 499px) {
+    aside {
+        order: 2;
+    }
+    .content {
+        order: 1;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    aside {
+        order: 1;
+    }
+    .content {
+        order: 2;
+    }
+}
+
+
+/* HEADINGS */
+h1.title {
+    text-align: center;
+    border-radius: 16px;
+    padding: 8px;
+    margin: 16px 0;
+    background-color: var(--main-color);
+    color: white;
+    p {
+        font-size: 0.9em;
+        margin: 8px 0px;
+        cursor: pointer;
+    }
+    .dop-info {
+        font-size: 0.5em;
+        padding: 0;
+        color: var(--main-text-color-ll);
+        display: none;
+        align-self: center;
+        table {
+            width: 100%;
+            margin-top: 8px;
+            border-collapse: collapse;
+            text-align: center;
+            padding: 4px;
+            thead tr {
+                background-color: var(--secondery-color-dd);
+                th {padding: 4px;}
+                th:first-child {
+                    border-top-left-radius: 8px;
+                }
+                th:last-child {
+                    border-top-right-radius: 8px;
+                }
+            }
+            tbody tr {
+                background-color: var(--secondery-color);
+                font-weight: normal;
+                td:first-child {
+                    border-bottom-left-radius: 8px;
+                }
+                td:last-child {
+                    border-bottom-right-radius: 8px;
+                }
+                td {
+                    padding: 4px;
+                    a {color: var(--main-text-color-ll)}
+                    a:hover {color: white}
+                }
+            }
+        }
+    }
+}
+
+table.language-info {
+    width: 100%;
+    margin-top: 8px;
+    border-collapse: collapse;
+    text-align: center;
+    padding: 4px;
+    thead tr {
+        background-color: var(--secondery-color-dd);
+        font-weight: bold;
+        th {padding: 4px;}
+        th:first-child {border-top-left-radius: 16px;}
+        th:last-child {border-top-right-radius: 16px;}
+        th:nth-child(2) {border-left: 3px solid var(--main-color);}
+        th:nth-child(3) {border-right: 3px solid var(--main-color);}
+    }
+    tbody tr {
+        background-color: var(--secondery-color);
+        td:first-child {border-bottom-left-radius: 16px;}
+        td:last-child {border-bottom-right-radius: 16px;}
+        td:nth-child(2) {border-left: 3px solid var(--main-color);}
+        td:nth-child(3) {border-right: 3px solid var(--main-color);}
+        td {
+            padding: 4px;
+            max-width:10vw;
+        }
+    }
+    .select-in-table {
+        /* font-size: 0.9em; */
+        border-radius: 16px;
+        border: var(--main-color-d) solid 2px;
+        padding: 2px 8px;
+        /* max-width: 100%; */
+    }
+    .select-in-table:hover {
+        background-color: var(--main-color-dd);
+        color: white;
+    }
+}
+
+
+.main-comment-div {
+    margin-bottom: 40px;
+    h6 {
+        color: var(--main-text-color-ll);
+        margin: 16px 8px 0px;
+    }
+    .comment {
+        margin: 0px;
+    }
+}
+.one-comment-div {
+    h6 {
+        color: var(--main-text-color-ll);
+        margin: 8px 8px 0px;
+    }
+    .comment {
+        margin: 0px;
+    }
+}

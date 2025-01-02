@@ -7,7 +7,8 @@
     <title>{% block title %} BASE TEMPLATE {% endblock %}</title>
     <link rel="icon" href="{% static 'favicon.ico' %}">
 
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/page.css' %}">
     <link rel="stylesheet" href="{% static 'css/add_image.css' %}">
   
     <script src="{% static 'js/dop-info.js' %}"></script>
@@ -16,19 +17,33 @@
 
 <body>
     
-    {% block header %}
     <header>
+    {% block header %}
         {% include 'top_nav.html' %}
+    {% endblock %}
     </header>
-    {% endblock %}
+    
+    <main>
+        {% block aside %}
+        <aside>
+            {% include "left_nav.html" %}
+        </aside>
+        {% endblock %}
+        
+        {% block content %}
+            <div class="content">ОСНОВНОЙ КОНТЕНТ СТРАНИЦЫ</div>
+        {% endblock %}
+    </main>
 
-    {% block content %}
-    <main>ГЛАВНАЯ ЧАСТЬ</main>
-    {% endblock %}
-
+    
+    <footer>
     {% block footer %}
-    {% include 'footer.html' %}
+        {% include 'footer.html' %}
     {% endblock %}
+    </footer>
 
+    {% block scripts %}
+    <script></script>
+    {% endblock %}
 </body>
 </html>

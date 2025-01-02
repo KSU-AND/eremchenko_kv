@@ -3,6 +3,7 @@ from django.db.models import Count
 
 from ..models.family import Family
 from ..models.language import Language
+from ..models.genus import Genus
 
 
 def family_page(request):
@@ -11,6 +12,9 @@ def family_page(request):
 
     context = {
         "cur_family": cur_family_obj,
+        "languages": Language.objects.all(),
+        "genuses": Genus.objects.all(),
+        "families": Family.objects.all(),
         "family_list": Family.objects.annotate(language_count=Count('language')),
         "cur_family_langs": Language.objects.filter(family=cur_family_obj.id),
     }

@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from ..models.language import Language
+from ..models.genus import Genus
+from ..models.family import Family
 from ..models.comment import Comment
 from ..models.comment_image import CommentImage
 from ..forms.tense_marker_form import FutForm, PstForm
@@ -88,7 +90,9 @@ def language_page(request):
     context = {
         "user": request.user,
         "cur_lang": cur_lang_obj,
-        "lang_list": Language.objects.all(),
+        "languages": Language.objects.all(),
+        "genuses": Genus.objects.all(),
+        "families": Family.objects.all(),
         "forms":{
             "ts": TenseSystemForm(instance=cur_lang_obj),
             "fut": FutForm(instance=cur_lang_obj),

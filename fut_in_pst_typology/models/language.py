@@ -17,14 +17,14 @@ class Language(models.Model):
         __empty__ =             gtl("(Unknown)")
     
     class TenseMarker(models.TextChoices):
-        m = "Mrph",     gtl("Морфологический")
-        a = "Anlt",     gtl("Аналитический")
+        m = "Mrph",     gtl("Морфологич.")
+        a = "Anlt",     gtl("Аналитич.")
         b = "M + A",    gtl("Возможны оба") 
         n = "---",      gtl("Ни одного")
         __empty__ =     gtl("(Unknown)")
 
     class CombOptionState(models.TextChoices):
-        Y = "YES",       gtl("Подтверждённое да")
+        Y = "YES",       gtl("Подтвержд. да")
         N = "not found", gtl("Кажется нет")
         Q = "?",         gtl("Непонятно")
         T = "---",       gtl("Невозможно") 
