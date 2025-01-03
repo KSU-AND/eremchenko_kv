@@ -1,6 +1,6 @@
-<nav class="left-nav">
-    <div class="left-nav-container">
-        <summary>Языки</summary>
+<nav class="left-nav" id="navLeft">    
+    <div class="left-nav-container A">
+        <div class="summary">Языки</div>
         <ul>
         {% for i in languages %}
             <li>
@@ -10,8 +10,8 @@
         </ul>
     </div>
     
-    <div class="left-nav-container">
-        <summary>Рода</summary>
+    <div class="left-nav-container B">
+        <div class="summary">Рода</div>
         <ul>
         {% for i in genuses %}
             <li>
@@ -21,8 +21,8 @@
         </ul>
     </div>
         
-    <div class="left-nav-container">
-        <summary>Семьи</summary>
+    <div class="left-nav-container C">
+        <div class="summary">Семьи</div>
         <ul>
         {% for i in families %}
             <li>
@@ -31,4 +31,5 @@
         {% endfor %}
         </ul>
     </div>
+    <button class="left-nav-toggle-button" onclick="toggleLeftNavBar(this)"><</button>
 </nav>
