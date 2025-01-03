@@ -1,9 +1,4 @@
 :root {
-    /* --main-color-ll: #7ECBD8;
-    --main-color-l: #37B6CE;
-	--main-color: #04859D;
-    --main-color-d: #206876;
-    --main-color-dd: #015666; */
     --main-color-ll: #B4B68F;
     --main-color-l: #B2B78F;
 	--main-color: #626A37;
@@ -232,14 +227,6 @@ table.home .dop-info {
 .add-comment-button:hover {
     border: 2px solid var(--main-color-dd);
     background-color: var(--main-color-ll);
-}
-
-footer {
-    background-color: var(--main-color-d);
-    text-align: center;
-    color: white;
-    padding: 1%;
-    margin-top: 16px;
 }
 
 .button-sort-table {

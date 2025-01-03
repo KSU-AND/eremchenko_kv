@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Теоретический блок - {{theory_block.title}}
+{% endblock %}
+
+{% block aside %}
+<aside>
+    {% include "theory/left_nav.html" %}
+</aside>
+{% endblock %}
+
+
+{% block content %}
+<div class="content">
+  <h1 class="title">{{theory_block.title}}</h1 class="title">
+  <h6>Outline</h6>
+  <div><pre class="comment"> {{theory_block.outline}}</pre></div>
+  <h6>Main text</h6>
+  <div><pre class="comment"> {{theory_block.text}}</pre></div>
+</div>
+{% endblock %}
