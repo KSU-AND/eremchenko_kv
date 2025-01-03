@@ -23,20 +23,17 @@
         {% include 'top_nav.html' %}
     {% endblock %}
     </header>
-
-    <main>
-        <div class="overlay" id="overlay" onclick="toggleLeftNav()"></div>
-        <button class="leftnav-toggle-btn" onclick="toggleLeftNav()">☰</button>
-        <aside  id="leftnav">
+    
+    <main id="mainBlock">
         {% block aside %}
-            {% include "left_nav.html" %}    
-        {% endblock %}
+        <aside>
+            {% include "left_nav.html" %}
         </aside>
+        {% endblock %}
         
-        
-        <div class="content">
-            {% block content %} ОСНОВНОЙ КОНТЕНТ СТРАНИЦЫ {% endblock %}
-        </div>
+        {% block content %}
+            <div class="content">ОСНОВНОЙ КОНТЕНТ СТРАНИЦЫ</div>
+        {% endblock %}
     </main>
 
     

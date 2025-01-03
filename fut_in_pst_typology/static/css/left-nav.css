@@ -1,0 +1,108 @@
+main {
+    align-content: center;
+}
+
+/* LEFT NAVIGATION BAR */
+aside {
+    height: 100%;
+    width: 220px;
+    position: fixed;
+    left: -220px;
+    transition: left 0.3s ease;
+    overflow-x: hidden; 
+    z-index: 2; 
+    height: calc(100vh - (var(--top-nav-h)));
+}
+aside.active {
+    left: 0;
+}
+
+
+
+.left-nav {
+    --padding: 8px;
+    --border-width: 4px;
+    padding: var(--padding);
+    border-radius: 0px 16px 16px 0px;
+    background-color: var(--secondery-color);
+    display: grid;
+    row-gap: var(--padding);
+    height: calc(100% - var(--padding) * 2);
+    grid-template-areas: "A X" "B X" "C X";
+    .A{grid-area: A;}
+    .B{grid-area: B;}
+    .C{grid-area: C;}
+    .X{grid-area: X;}
+    
+}
+.left-nav-container {
+    outline: var(--border-width) solid var(--secondery-color-dd);
+    outline-offset: calc(0px - var(--border-width));
+    border-radius: var(--padding);
+    padding-bottom: var(--border-width);
+}
+.left-nav .summary {
+    border-radius: var(--padding);
+    border: none;
+    background-color: var(--secondery-color-dd);
+    color: var(--main-text-color);
+    padding: calc(var(--padding) / 2) var(--padding);
+}
+.left-nav ul {
+    padding-inline-start: 0px;
+    max-height: 25vh;
+    overflow-y: auto;
+    margin: 0px var(--border-width);
+}
+.left-nav li {
+    list-style-type: none;
+    display: flex;
+}
+.left-nav a {
+    color: var(--main-text-color-ll);
+    flex: 1;
+}
+.left-nav a:hover {
+    background-color: var(--secondery-color-d);
+    color: var(--main-text-color-ll)
+}
+
+
+/* **************************************************** */
+
+.content {
+    margin: 0 10%;
+    padding: 20px;
+    width: 80%;
+}
+
+.leftnav-toggle-btn {
+    position: fixed;
+    top: 10vh;
+    left: 1vw;
+    font-size: 30px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.leftnav-toggle-btn:not(:has(~aside>.left-nav)){
+    display: none;
+}
+
+.overlay {
+    position: fixed;
+    top: var(--top-nav-h);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1; /* Область затемнения ниже меню */
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}

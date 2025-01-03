@@ -10,9 +10,8 @@
     --main-color-d: #364421;
     --main-color-dd: #263516;
 
-    --secondery-color: #f8f8f8;
-    --secondery-color-d: #D9D6B5;
-    --secondery-color-dd: #B3AE90;
+    --secondery-color: #F8F8F8;
+    --secondery-color-d: #E7E5D2;
     --secondery-color-dd: #D9D6B5;
 
     --main-text-color: #222;
@@ -24,15 +23,25 @@
     --green-color: #00C12B;
     --green-color-d: #24913C;
     --green-color-dd: #007D1C;
+    --top-nav-h: 50px;
 }
 ::-webkit-scrollbar {
     display: none;
+}
+header {
+    position: sticky;
+    top: 0;
 }
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: var(--main-text-color);
     margin: 0px;
     padding: 0px;
+
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
+    main {align-self: start;}
 }
 
 a { 
@@ -61,6 +70,7 @@ nav.top-nav {
     list-style: none;
     font-weight: bold;
     font-size: 0.9em;
+    min-height: var(--top-nav-h);
 }
 nav.top-nav li{
     padding: 4px 8px;
@@ -100,7 +110,7 @@ table.home thead tr {
 	border-radius: 8px;
     background-color: var(--secondery-color-dd);
     position: sticky;
-    top: 0px;
+    top: var(--top-nav-h);
 }
 table.home thead tr th { 
     padding: 8px; 
@@ -126,8 +136,8 @@ table.home tbody tr td:last-child {
 table.home tbody tr:nth-child(even){
 	background: var(--secondery-color);
 }
-table.home tbody table.home tr:hover {
-    background-color: var(--main-color-ll) !important;
+table.home tbody.home tr:hover {
+    background-color: var(--secondery-color-d) !important;
 }
 table.home .code {
     text-align: center;
@@ -145,12 +155,12 @@ table.home thead .lang {
 table.home .ts {
     text-align: center;
     padding: 12px;
-    width: 15%;
+    width: 10%;
 }
 table.home .tm {
     text-align: center;
     padding: 12px;
-    width: 5%;
+    width: 7%;
 }
 table.home .tm:nth-child(even){
 	border-left: 3px solid var(--main-color);
