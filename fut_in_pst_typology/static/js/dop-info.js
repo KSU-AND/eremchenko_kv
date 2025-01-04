@@ -50,3 +50,13 @@ function sortTable(button) {
         table.tBodies[0].appendChild(row);
     }
 }
+
+
+
+
+function theoryBlockToggle(heading){
+    heading.parentNode.classList.toggle("active");
+    // heading.lastElementChild.classList.toggle('fa-eye');
+    heading.lastElementChild.classList.toggle('fa-eye-slash');
+
+}

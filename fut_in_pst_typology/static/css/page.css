@@ -159,3 +159,37 @@ table.language-info {
         margin: 0px;
     }
 }
+
+
+.theoryBlock {
+    /* border: 1px solid red; */
+    padding: 0;
+    margin: 0;
+    --anim-dur: 0.4s ease-in-out;
+
+    h6 {
+        cursor: pointer;
+        font-size: 1em;
+        transition: font-size var(--anim-dur);
+    }
+    .outline {
+        padding: 0;
+        font-size: 0;
+        opacity: 0;
+        max-height: 0;
+        transition: 
+            padding var(--anim-dur),
+            font-size var(--anim-dur),
+            opacity var(--anim-dur),
+            max-height var(--anim-dur);
+    }
+}
+.theoryBlock.active{
+    h6 {font-size: var(--h6-size);}
+    .outline {
+        padding: 8px;
+        font-size: 1em;
+        opacity: 1;
+        max-height: 1000px;
+    }
+}

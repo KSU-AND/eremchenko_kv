@@ -81,7 +81,7 @@
   </table>
 
   <div class="main-comment-div">
-    <h6>Основной комментарий</h6>
+    <h6><i class="fas fa-terminal"></i> главный</h6>
     {% if not user.is_anonymous %}
     <form method="post" id="main_comment">{% csrf_token %}{{ forms.main_comment }}</form>
     {% else %}
@@ -90,6 +90,27 @@
     </div>
     {% endif %}
   </div>
+
+  <hr>  
+  <div id="all_theory_blocks">
+    {% for theory_block in theory_blocks %}
+    <div class="theoryBlock">
+      <h6 onclick="theoryBlockToggle(this)">
+        <i class="fas fa-brain"></i> 
+        {{theory_block.title}} 
+        <i class="fas fa-eye-slash"></i>
+      </h6>
+      <div class="theory outline"> {{theory_block.outline|safe}}
+        <div class="link">
+          <a href="{% url 'fpt.theory.view' %}?id={{theory_block.id}}">
+            Читать продолжение в источнике...
+          </a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
   <hr>  
   <div id="all_comments">
     {% for comment in forms.comments %}

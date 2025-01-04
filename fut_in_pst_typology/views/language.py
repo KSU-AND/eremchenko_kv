@@ -93,6 +93,7 @@ def language_page(request):
         "languages": Language.objects.all(),
         "genuses": Genus.objects.all(),
         "families": Family.objects.all(),
+        "theory_blocks": cur_lang_obj.theory_blocks.all(),
         "forms":{
             "ts": TenseSystemForm(instance=cur_lang_obj),
             "fut": FutForm(instance=cur_lang_obj),
