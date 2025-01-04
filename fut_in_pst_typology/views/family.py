@@ -16,6 +16,6 @@ def family_page(request):
         "genuses": Genus.objects.all(),
         "families": Family.objects.all(),
         "family_list": Family.objects.annotate(language_count=Count('language')),
-        "cur_family_langs": Language.objects.filter(family=cur_family_obj.id),
+        "cur_family_languages": Language.objects.filter(family=cur_family_obj.id),
     }
     return render(request, "family.html", context)

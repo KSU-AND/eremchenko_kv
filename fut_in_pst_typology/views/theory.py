@@ -15,6 +15,7 @@ def theory_view_page(request):
     context = {
         "theory_block": cur_theory_block,
         "theory_blocks": TheoryBlock.objects.all(),
+        "theory_block_languages" : cur_theory_block.languages.all(),
     }
     return render(request, "theory/view.html", context)
 

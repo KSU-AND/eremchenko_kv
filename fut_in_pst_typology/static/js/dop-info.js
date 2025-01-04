@@ -14,14 +14,23 @@ function toggleInfoInH1(infoH1) {
     }
 }
 
-function sortTable(button, columnIndex) {
-    let table = document.getElementsByClassName('home')[0];
-    let ascending = button.textContent!='↓' ? true : false;
+function sortTable(button) {
+    let columnIndex = 1;
+    table = button.parentElement.closest('table');
+    
+    let ascending = button.classList.contains('fa-arrow-down-a-z') ? false : true;
 
     [...document.getElementsByClassName('button-sort-table')].forEach(function(btn, i){
-        btn.textContent = "↕";
-    })
-    button.textContent = ascending ? '↓' : '↑';
+        let newClass = 'fa-arrows-up-down';
+        if (btn == button){
+            columnIndex = i+1;
+            newClass = ascending ? 'fa-arrow-down-a-z' : 'fa-arrow-down-z-a';
+        }
+        btn.classList.remove('fa-arrow-down-z-a');
+        btn.classList.remove('fa-arrow-down-a-z');
+        btn.classList.remove('fa-arrows-up-down');
+        btn.classList.add(newClass);
+    });
 
     let rows = Array.from(table.rows).slice(1); // Exclude the header row
 
@@ -30,9 +39,9 @@ function sortTable(button, columnIndex) {
         let b = rowB.cells[columnIndex].textContent.trim();
 
         if (ascending) {
-            return a.localeCompare(b);
+            return a=='' || a.localeCompare(b);
         } else {
-            return b.localeCompare(a);
+            return b=='' || b.localeCompare(a);
         }
     });
     

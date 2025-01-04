@@ -14,9 +14,14 @@
   <h6>Outline</h6>
   <div class="theory outline"> {{theory_block.outline|safe}}</div>
   <div class="theory text"> {{theory_block.text|safe}}</div>
+  <hr>
+  <h6>Языки, где встречается этот теоретический блок</h6>
+  {% include 'block/languages_table.html' with languages=theory_block_languages %}
 {% endblock %}
 
 {% block edit %}
+  {% if not user.is_anonymous %}
   <a class="sidebutton editButton fas fa-pen-nib" 
       href="{% url 'fpt.theory.edit' %}?id={{theory_block.id}}"></a>
+  {% endif %}
 {% endblock %}

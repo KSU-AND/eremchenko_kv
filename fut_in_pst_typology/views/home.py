@@ -5,6 +5,6 @@ from fut_in_pst_typology.models.language import Language
 
 def home_page(request):
     context = {
-        "lang_list": Language.objects.all(),
+        "languages": Language.objects.all(),
     }
     return render(request, "home.html", context)

@@ -8,45 +8,8 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="title">Типология будущего в прошедшем</h1>
+  <h1 class="title">Типология будущего в прошедшем</h1>
+  
+  {% include 'block/languages_table.html' %}
 
-    
-
-    <table class="home">
-      <thead>
-        <tr>
-          <th class="code">Код</th>
-          <th class="lang">Язык {% include "sort_button.html" with i=1 %}</th>
-          <th class="ts">Система времён {% include "sort_button.html" with i=2 %}</th>
-          <th class="tm">FUT {% include "sort_button.html" with i=3 %}</th>
-          <th class="tm">PST {% include "sort_button.html" with i=4 %}</th>
-          <th class="comb">мрф-мрф {% include "sort_button.html" with i=5 %}</th>
-          <th class="comb">анл-мрф {% include "sort_button.html" with i=6 %}</th>
-          <th class="comb">мрф-анл {% include "sort_button.html" with i=7 %}</th>
-          <th class="comb">анл-анл {% include "sort_button.html" with i=8 %}</th>
-        </tr>
-      </thead>
-      <tbody class="home">
-        {% for l in lang_list %}
-        {% url 'fpt.language' as lang_url %}
-        <tr onclick="toggleInfoInRow(this)">
-          <td class="code">{{l.code}}</td>
-          <td class="lang">
-            <a href='{{lang_url}}?code={{l.code}}'>{{ l.name }}</a>
-            <div class="dop-info">
-                <p><b>Род: </b> {{ l.genus }}</p>
-                <p><b>Семья: </b> {{ l.family }}</p>
-            </div>
-          </td>
-          <td class="ts">{{l.tense_system}}</td>
-          <td class="tm">{{l.fut}}</td>
-          <td class="tm">{{l.pst}}</td>
-          <td class="comb">{{l.mm}}</td>
-          <td class="comb">{{l.am}}</td>
-          <td class="comb">{{l.ma}}</td>
-          <td class="comb">{{l.aa}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
 {% endblock %}

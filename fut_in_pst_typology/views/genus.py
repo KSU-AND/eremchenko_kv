@@ -16,6 +16,6 @@ def genus_page(request):
         "genuses": Genus.objects.all(),
         "families": Family.objects.all(),
         "genus_list": Genus.objects.annotate(language_count=Count('language')),
-        "cur_genus_langs": Language.objects.filter(genus=cur_genus_obj.id),
+        "cur_genus_languages": Language.objects.filter(genus=cur_genus_obj.id),
     }
     return render(request, "genus.html", context)

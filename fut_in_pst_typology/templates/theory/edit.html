@@ -10,6 +10,8 @@
 
 
 {% block content %}
+  
+{% if not user.is_anonymous %}
   <h1 class="title">{{theory_block.title}}</h1 class="title">
 
   <h6>Outline</h6>
@@ -17,7 +19,10 @@
   
   <h6>Main text</h6>
   {% include 'block/texteditor.html' with form=theory_text_form.text %}
-
+{% else %}
+  <h1 class="title">403 Forbidden</h1 class="title">
+  <h6>Только зарегестрированные пользователи могут редактировать теоретические блоки.</h6>
+{% endif %}
 {% endblock %}
 
 {% block edit %}
