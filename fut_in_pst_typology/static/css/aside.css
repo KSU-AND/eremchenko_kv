@@ -1,0 +1,58 @@
+.sidediv {
+    position: fixed;
+    button {
+        cursor: pointer;
+        width: 32px;
+        height: 32px;
+    }
+}
+.sidebutton {
+    position: fixed;
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+    color: var(--main-color);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    font-size: 1.5em;
+    box-sizing: border-box;
+    padding: 0;
+    align-content: center;
+    text-align: center;
+}
+.sidebutton:hover {
+    background-color: var(--main-color);
+    color: white;
+}
+
+
+.leftNavButton {
+    top: 11vh;
+    left: 3.5%;
+}
+.leftNavButton:not(:has(~aside>.left-nav)){
+    display: none;
+}
+
+.editButton{
+    top: 11vh;
+    right: 3.5%;
+}
+
+
+.texteditor-toolbar {
+    top: 40vh;
+    left: 3.5%;
+    display: block;
+
+    button {
+        display: block;
+        color: var(--main-text-color-ll);
+        border: 2px solid var(--secondery-color-dd);
+        border-radius: 8px;
+    }
+    button:hover {
+        background-color: var(--secondery-color-dd);
+    }
+}

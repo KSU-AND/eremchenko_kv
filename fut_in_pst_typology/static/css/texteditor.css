@@ -1,0 +1,34 @@
+@import "base.css";
+
+
+div.texteditor {
+    margin-top: 4px;
+    min-height: 6em;
+    padding: 8px;
+    border: 2px solid var(--secondery-color-dd);
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: var(--secondery-color);
+    resize: none;
+    h2, h3, h4{
+        margin-top: 8px;
+        margin-bottom: 4px;
+    }
+}
+
+.theory {
+    margin-top: 4px;
+    min-height: 6em;
+    padding: 8px;
+    resize: none;
+    h2, h3, h4{
+        margin-top: 8px;
+        margin-bottom: 4px;
+    }
+}
+.theory.outline {
+    border: 2px solid var(--secondery-color-dd);
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: var(--secondery-color);    
+}

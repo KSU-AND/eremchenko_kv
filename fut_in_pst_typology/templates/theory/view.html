@@ -12,7 +12,11 @@
 {% block content %}
   <h1 class="title">{{theory_block.title}}</h1 class="title">
   <h6>Outline</h6>
-  <div><pre class="comment"> {{theory_block.outline}}</pre></div>
-  <h6>Main text</h6>
-  <div><pre class="comment"> {{theory_block.text}}</pre></div>
+  <div class="theory outline"> {{theory_block.outline|safe}}</div>
+  <div class="theory text"> {{theory_block.text|safe}}</div>
+{% endblock %}
+
+{% block edit %}
+  <a class="sidebutton editButton fas fa-pen-nib" 
+      href="{% url 'fpt.theory.edit' %}?id={{theory_block.id}}"></a>
 {% endblock %}

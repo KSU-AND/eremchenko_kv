@@ -72,21 +72,8 @@ aside.active {
 
 .content {
     margin: 0 10%;
-    padding: 20px;
+    padding: 20px 0;
     width: 80%;
-}
-
-.leftnav-toggle-btn {
-    position: fixed;
-    top: 10vh;
-    left: 1vw;
-    font-size: 30px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-.leftnav-toggle-btn:not(:has(~aside>.left-nav)){
-    display: none;
 }
 
 .overlay {

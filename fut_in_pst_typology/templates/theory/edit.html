@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Редактирование теоретического блока
+{% endblock %}
+
+{% block aside %}
+    {% include "theory/left_nav.html" %}
+{% endblock %}
+
+
+{% block content %}
+  <h1 class="title">{{theory_block.title}}</h1 class="title">
+
+  <h6>Outline</h6>
+  {% include 'block/texteditor.html' with form=theory_outline_form.outline %}
+  
+  <h6>Main text</h6>
+  {% include 'block/texteditor.html' with form=theory_text_form.text %}
+
+{% endblock %}
+
+{% block edit %}
+  <a class="sidebutton editButton fas fa-floppy-disk" 
+      href="{% url 'fpt.theory.view' %}?id={{theory_block.id}}"></a>
+  {% include 'block/texteditor-toolbar.html' %}
+{% endblock %}
+
+{% block scripts %}
+  {% load static %}
+  <script src="{% static 'js/texteditor.js' %}"></script>
+{% endblock %}

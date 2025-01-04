@@ -1,0 +1,9 @@
+<div class="editor">
+    <div class="texteditor" contenteditable="true" onblur="postTextFromEditor(this)">
+        {{form.value|safe}}
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        {{form}}
+    </form>
+</div>

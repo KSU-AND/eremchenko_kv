@@ -1,8 +1,24 @@
 <nav class="top-nav">
     <li>
-        <ul><a href="{% url 'fpt' %}">К исследованию</a></ul>
-        <ul><a href="{% url 'fpt.summary' %}">Сводная таблица</a></ul>
-        <ul><a href="{% url 'fpt.statistics' %}">Статистические данные</a></ul>
-        <ul><a href="{% url 'fpt.theory' %}">Теоретический бэкграунд</a></ul>
+        <ul>
+            <a href="{% url 'fpt' %}">
+                <i class="fas fa-caret-left"></i> К исследованию
+            </a>
+        </ul>
+        <ul>
+            <a href="{% url 'fpt.summary' %}">
+                <i class="fas fa-table"></i> Сводная таблица
+            </a>
+        </ul>
+        <ul>
+            <a href="{% url 'fpt.statistics' %}">
+                <i class="fas fa-chart-pie"></i> Статистические данные
+            </a>
+        </ul>
+        <ul>
+            <a href="{% url 'fpt.theory' %}">
+                <i class="fas fa-brain"></i> Теоретический бэкграунд
+            </a>
+        </ul>
     </li>
 </nav>
