@@ -12,7 +12,13 @@
 {% block content %}
   
 {% if not user.is_anonymous %}
-  <h1 class="title">{{theory_block.title}}</h1 class="title">
+  <h1 class="title">
+    <div contenteditable="plaintext-only"  onblur="postTextFromEditor(this)">{{theory_title_form.title.value}}</div>
+    <form method="post">
+      {% csrf_token %}
+      {{theory_title_form.title}}
+    </form>
+  </h1>
 
   <h6>Outline</h6>
   {% include 'block/texteditor.html' with form=theory_outline_form.outline %}

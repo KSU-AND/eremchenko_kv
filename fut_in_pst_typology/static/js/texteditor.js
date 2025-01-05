@@ -31,7 +31,7 @@
 function postTextFromEditor(current_editor) {
     textarea = current_editor.parentNode.lastElementChild.lastElementChild;
 
-    textarea.innerHTML = current_editor.innerHTML;
+    textarea.innerHTML = current_editor.innerHTML.trim();
     
     let xhr = new XMLHttpRequest();
     xhr.open('POST', document.URL, true);

@@ -1,8 +1,15 @@
 from django import forms 
 
 from ..models.theory import TheoryBlock
-from ..forms.widgets import theory_text_widget, theory_outline_widget
+from ..forms.widgets import theory_title_widget, theory_text_widget, theory_outline_widget
 
+
+class TheoryTitleForm(forms.ModelForm):
+    class Meta:
+        model = TheoryBlock
+        fields = ['title']
+        labels = {'title': ''}
+        widgets = {'title': theory_title_widget}
 
 class TheoryOutlineForm(forms.ModelForm):
     class Meta:
@@ -10,7 +17,7 @@ class TheoryOutlineForm(forms.ModelForm):
         fields = ['outline']
         labels = {'outline': ''}
         widgets = {'outline': theory_outline_widget}
-        
+
 class TheoryTextForm(forms.ModelForm):
     class Meta:
         model = TheoryBlock

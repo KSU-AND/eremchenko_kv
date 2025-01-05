@@ -13,9 +13,9 @@ comment_widget = Textarea(attrs={"class": "comment",
                                  "placeholder": "Комментарий",
                                  "spellcheck": "false",
                                  "rows":""})
+theory_title_widget = Textarea(attrs={"id": "theory_title",
+                                     "style": "display: none;"})
 theory_outline_widget = Textarea(attrs={"id": "theory_outline",
-                                        "style": "display: none;",
-                                        })
+                                        "style": "display: none;"})
 theory_text_widget = Textarea(attrs={"id": "theory_text",
-                                     "style": "display: none;",
-                                     })
+                                     "style": "display: none;"})
