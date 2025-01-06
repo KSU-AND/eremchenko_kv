@@ -8,7 +8,7 @@ class TheoryBlock(models.Model):
         verbose_name = "Теоретический блок"
         verbose_name_plural = "Теоретический блок"
     
-    title = models.CharField(max_length=128, unique=True)
+    title = models.CharField(max_length=128)
     outline = models.TextField(blank=True)
     text = models.TextField(blank=True)
     languages = models.ManyToManyField(Language, related_name="theory_blocks")

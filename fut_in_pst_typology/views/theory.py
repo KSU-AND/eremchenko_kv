@@ -1,4 +1,5 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import redirect, render, HttpResponse
+from django.urls import reverse
 
 from ..models.theory import TheoryBlock
 from ..models.language import Language
@@ -15,13 +16,8 @@ def theory_view_page(request):
 
     if request.method == "POST":
         if request.POST.get("languages") is not None:
-            language = Language.objects.get(id=request.POST.get("languages"))
-            # if not language in cur_theory_block.languages.all():
-                # languages = list(cur_theory_block.languages.all())
-                # languages.append(language)
             languages_form = LanguageForm(request.POST, instance=cur_theory_block)
             languages_form.save()
-            # return HttpResponse(status=200)
 
     context = {
         "theory_block": cur_theory_block,
@@ -31,11 +27,7 @@ def theory_view_page(request):
     return render(request, "theory/view.html", context)
 
 def theory_edit_page(request):
-    cur_theory_block = None
-    if "create" in request.META.get('PATH_INFO', None):
-        cur_theory_block = TheoryBlock.objects.create()
-    else:
-        cur_theory_block = TheoryBlock.objects.get(id=request.GET.get("id"))
+    cur_theory_block = TheoryBlock.objects.get(id=request.GET.get("id"))
     
     if request.method == "POST":
         if request.POST.get("title") is not None:
@@ -60,3 +52,9 @@ def theory_edit_page(request):
         }
     }
     return render(request, "theory/edit.html", context)
+
+def theory_create(request):
+    new_theory_block = TheoryBlock.objects.create(title="Title", 
+                                                  outline="<div>outline</div>",
+                                                  text="<div>text</div>")
+    return redirect(reverse("fpt.theory.edit")+f"?id={new_theory_block.id}")
