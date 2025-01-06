@@ -58,3 +58,8 @@ def theory_create(request):
                                                   outline="<div>outline</div>",
                                                   text="<div>text</div>")
     return redirect(reverse("fpt.theory.edit")+f"?id={new_theory_block.id}")
+
+def theory_delete(request):
+    theory_block = TheoryBlock.objects.get(id=request.GET.get("id"))
+    theory_block.delete()
+    return redirect(reverse("fpt.theory"))

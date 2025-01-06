@@ -34,6 +34,8 @@
 {% block edit %}
   <a class="sidebutton editButton fas fa-floppy-disk" 
       href="{% url 'fpt.theory.view' %}?id={{theory_block.id}}"></a>
+  <a class="sidebutton deleteButton fas fa-trash" 
+      href="{% url 'fpt.theory.delete' %}?id={{theory_block.id}}"></a>
   {% include 'block/texteditor-toolbar.html' %}
 {% endblock %}
 

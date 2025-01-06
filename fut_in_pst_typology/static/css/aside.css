@@ -39,11 +39,16 @@
     top: 11vh;
     right: 3.5%;
 }
-
 .createButton{
     top: 11vh;
     right: 3.5%;
 }
+.deleteButton{
+    top: calc(11vh + 64px);
+    right: 3.5%;
+}
+.deleteButton:hover {background-color: brown;}
+
 
 .texteditor-toolbar {
     top: 40vh;
