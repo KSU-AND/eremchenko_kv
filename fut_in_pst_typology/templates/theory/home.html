@@ -9,8 +9,13 @@
 
 
 {% block content %}
-  {% for i in theory_blocks  %}
-    <h2><a href="{% url 'fpt.theory.view' %}?id={{i.id}}">{{i.title}}</a></h2>
-    <div class="theory outline">{{i.outline|safe}}</div>
-  {% endfor %}
+<h1 class="title">Теоретический бэкграунд</h1>
+<div id="all_theory_blocks">
+  {% include 'block/theories_table.html' %}
+</div>
+{% endblock %}
+
+{% block edit %}
+  <a class="sidebutton createButton fas fa-plus" 
+      href="{% url 'fpt.theory.create' %}"></a>
 {% endblock %}

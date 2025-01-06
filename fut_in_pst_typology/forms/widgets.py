@@ -1,4 +1,4 @@
-from django.forms import Select, Textarea
+from django.forms import Select, Textarea, CheckboxSelectMultiple
 
 
 intable_select_widget = Select(attrs={"class": "select-in-table", 
@@ -13,9 +13,7 @@ comment_widget = Textarea(attrs={"class": "comment",
                                  "placeholder": "Комментарий",
                                  "spellcheck": "false",
                                  "rows":""})
-theory_title_widget = Textarea(attrs={"id": "theory_title",
+textarea_hidden_widget = Textarea(attrs={"name": "theory",
                                      "style": "display: none;"})
-theory_outline_widget = Textarea(attrs={"id": "theory_outline",
-                                        "style": "display: none;"})
-theory_text_widget = Textarea(attrs={"id": "theory_text",
-                                     "style": "display: none;"})
+
+languages_widget = CheckboxSelectMultiple(attrs={"class": "checkBoxed",}) 

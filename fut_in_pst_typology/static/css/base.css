@@ -134,6 +134,7 @@ table.home tbody.home tr:hover {
 }
 table.home {
     td {
+        align-content: baseline;
         text-align: center;
         padding: 12px;
     }
@@ -147,16 +148,30 @@ table.home {
     .tm:nth-child(even) {border-left: 3px solid var(--main-color);}
     .tm:nth-child(odd){border-right: 3px solid var(--main-color);}
     .comb {width: 10%;}
+    .title {
+        text-align: left;
+        width: 75%;
+    }
+    thead .title {padding: 20px;}
+    .langs {
+        width: 20%;
+        border-left: 3px solid var(--main-color);
+    }
 }
 
 
 table.home .dop-info {
+    text-align: left;
     font-size: 0.8em;
     padding: 0px 8px;
     display: none;
     p {
         margin-top: 0.5em;
         margin-bottom: 0;
+    }
+    h2, h3, h4 {
+        margin-top: 0.5em;
+        margin-bottom: 0.2em;
     }
 }
 

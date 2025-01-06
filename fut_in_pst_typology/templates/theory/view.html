@@ -11,12 +11,18 @@
 
 {% block content %}
   <h1 class="title">{{theory_block.title}}</h1 class="title">
-  <h6>Outline</h6>
+  <hr><h6>Outline</h6>
   <div class="theory outline"> {{theory_block.outline|safe}}</div>
+  <hr><h6>Основной текст</h6>
   <div class="theory text"> {{theory_block.text|safe}}</div>
   <hr>
   <h6>Языки, где встречается этот теоретический блок</h6>
-  {% include 'block/languages_table.html' with languages=theory_block_languages %}
+  <form  method="post">
+    {% csrf_token %}
+    {{forms.languages.languages}}
+    <button type="submit" value="add-language">ADD</button>
+  </form>
+  {% include 'block/languages_table.html' with languages=theory_block.languages.all %}
 {% endblock %}
 
 {% block edit %}

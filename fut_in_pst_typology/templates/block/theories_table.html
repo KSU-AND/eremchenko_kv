@@ -1,0 +1,31 @@
+<table class="home">
+    <thead>
+      <tr>
+        <th class="code">ID</th>
+        <th class="title">Заголовок</th>
+        <th class="langs">Языки</th>
+      </tr>
+    </thead>
+    <tbody class="home">
+      {% for tb in theory_blocks %}
+      {% url 'fpt.theory.view' as tb_url %}
+      <tr onclick="toggleInfoInRow(this)">
+        <td class="code">{{tb.id}}</td>
+        <td class="title">
+          <a href='{{tb_url}}?id={{tb.id}}'>{{ tb.title }}</a>
+          <div class="dop-info">
+            <p>{{ tb.outline|safe }}</p>
+          </div>
+        </td>
+        <td class="langs">
+          {{ tb.languages.count }}
+          <div class="dop-info">
+            {% for l in tb.languages.all %}
+            <div><a href="{% url 'fpt.language' %}?code={{l.code}}">{{l}}</a></div>
+            {% endfor %}
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>

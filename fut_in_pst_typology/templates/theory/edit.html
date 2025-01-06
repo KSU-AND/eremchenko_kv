@@ -13,18 +13,18 @@
   
 {% if not user.is_anonymous %}
   <h1 class="title">
-    <div contenteditable="plaintext-only"  onblur="postTextFromEditor(this)">{{theory_title_form.title.value}}</div>
+    <div contenteditable="plaintext-only"  onblur="postTextFromEditor(this)">{{forms.title.title.value}}</div>
     <form method="post">
       {% csrf_token %}
-      {{theory_title_form.title}}
+      {{forms.title.title}}
     </form>
   </h1>
 
-  <h6>Outline</h6>
-  {% include 'block/texteditor.html' with form=theory_outline_form.outline %}
+  <hr><h6>Outline</h6>
+  {% include 'block/texteditor.html' with form=forms.outline.outline %}
   
-  <h6>Main text</h6>
-  {% include 'block/texteditor.html' with form=theory_text_form.text %}
+  <hr><h6>Основной текст</h6>
+  {% include 'block/texteditor.html' with form=forms.text.text %}
 {% else %}
   <h1 class="title">403 Forbidden</h1 class="title">
   <h6>Только зарегестрированные пользователи могут редактировать теоретические блоки.</h6>

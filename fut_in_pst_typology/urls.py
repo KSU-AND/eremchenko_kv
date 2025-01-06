@@ -15,6 +15,7 @@ fpturlpatterns = [
     path('theory/', theory_page, name="fpt.theory"),
     path('theory/view/', theory_view_page, name="fpt.theory.view"),
     path('theory/edit/', theory_edit_page, name="fpt.theory.edit"),
+    path('theory/create/', theory_edit_page, name="fpt.theory.create"),
     path('summary/', home_page, name="fpt.summary"),
     
     path('language/', language_page, name="fpt.language"),

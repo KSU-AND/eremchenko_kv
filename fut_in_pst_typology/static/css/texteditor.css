@@ -26,9 +26,9 @@ div.texteditor {
         margin-bottom: 4px;
     }
 }
-.theory.outline {
+/* .theory.outline {
     border: 2px solid var(--secondery-color-dd);
     border-radius: 8px;
     box-sizing: border-box;
     background-color: var(--secondery-color);    
-}
+} */
