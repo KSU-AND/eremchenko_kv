@@ -177,6 +177,7 @@ table.language-info {
         font-size: 0;
         opacity: 0;
         max-height: 0;
+        overflow-y: auto;   
         transition: 
             padding var(--anim-dur),
             font-size var(--anim-dur),
@@ -190,7 +191,7 @@ table.language-info {
         padding: 8px;
         font-size: 1em;
         opacity: 1;
-        max-height: 1000px;
+        max-height: 33vh;
     }
 }
 
