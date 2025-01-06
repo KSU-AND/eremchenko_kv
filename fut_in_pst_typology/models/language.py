@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as gtl
 
 from .family import Family
 from .genus import Genus
+from .theory import TheoryBlock
 
 class Language(models.Model):
     class Meta:
@@ -46,6 +47,8 @@ class Language(models.Model):
     aa = models.CharField(max_length=10, choices=CombOptionState, blank=True)
 
     main_comment = models.TextField(blank=True)
+    
+    theory_blocks = models.ManyToManyField(TheoryBlock, related_name="languages")
 
     def __str__(self) -> str:
         return self.name

@@ -127,3 +127,21 @@ function toggleImageZoom(button) {
     button.textContent = button.textContent=='zoom ✅'? 'zoom ❎' : 'zoom ✅';
     button.classList.toggle('zoom');
 }
+
+function toggleTheoryBlocksOverlay(){
+    theoryBlocksBack.classList.toggle("active");
+    theoryBlocksDiv.classList.toggle("active");
+}
+
+function postTheoryBlocks(button) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', document.URL, true);
+
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            toggleTheoryBlocksOverlay();
+            all_theory_blocks.innerHTML = xhr.response;
+        }
+    }
+    xhr.send(new FormData(theoryBlocksForm));
+};

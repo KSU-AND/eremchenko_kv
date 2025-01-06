@@ -11,7 +11,7 @@ from ..forms.tense_system_form import TenseSystemForm
 from ..forms.combinations_form import MMForm, MAForm, AMForm, AAForm
 from ..forms.main_comment_form import MainCommentForm
 from ..forms.comment_form import CommentForm
-from ..forms.comment_image_form import CommentImageForm
+from ..forms.theory_form import TheoryBlocksForm
 
 
 def language_page(request):
@@ -85,8 +85,19 @@ def language_page(request):
                 form = CommentForm(request.POST, prefix=comment_id, instance=comment)
                 form.save() if form.is_valid() else comment.delete()
             return HttpResponse(status=200)
-            
-    
+        if request.POST.get("theory_blocks") is not None:
+            post = dict(request.POST)
+            post["theory_blocks"] = [i for i in post["theory_blocks"] if i]
+            if post["theory_blocks"]:
+                theory_blocks_form = TheoryBlocksForm(post, instance=cur_lang_obj)
+                theory_blocks_form.save()
+                return render(request, "block/theory_blocks.html", {"theory_blocks": cur_lang_obj.theory_blocks.all()})
+            else:
+                theory_blocks = cur_lang_obj.theory_blocks.all()
+                for tb in theory_blocks:
+                    cur_lang_obj.theory_blocks.remove(tb)
+                return render(request, "block/theory_blocks.html")
+
     context = {
         "user": request.user,
         "cur_lang": cur_lang_obj,
@@ -107,6 +118,7 @@ def language_page(request):
                           "form": CommentForm(instance=c, prefix=str(c.id)),
                           "images": CommentImage.objects.filter(comment=c),
                           } for c in comments],
+            "theory_blocks": TheoryBlocksForm(instance=cur_lang_obj)
         },
     }
     return render(request, "language.html", context)

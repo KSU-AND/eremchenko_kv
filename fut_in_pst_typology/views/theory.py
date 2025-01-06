@@ -2,8 +2,7 @@ from django.shortcuts import redirect, render, HttpResponse
 from django.urls import reverse
 
 from ..models.theory import TheoryBlock
-from ..models.language import Language
-from ..forms.theory_form import TheoryTitleForm, TheoryOutlineForm, TheoryTextForm, LanguageForm
+from ..forms.theory_form import TheoryTitleForm, TheoryOutlineForm, TheoryTextForm
 
 def theory_page(request):
     context = {
@@ -14,15 +13,9 @@ def theory_page(request):
 def theory_view_page(request):
     cur_theory_block = TheoryBlock.objects.prefetch_related('languages').get(id=request.GET.get("id"))
 
-    if request.method == "POST":
-        if request.POST.get("languages") is not None:
-            languages_form = LanguageForm(request.POST, instance=cur_theory_block)
-            languages_form.save()
-
     context = {
         "theory_block": cur_theory_block,
         "theory_blocks": TheoryBlock.objects.all(),
-        "forms": {"languages": LanguageForm(instance=cur_theory_block),}
     }
     return render(request, "theory/view.html", context)
 

@@ -16,4 +16,4 @@ comment_widget = Textarea(attrs={"class": "comment",
 textarea_hidden_widget = Textarea(attrs={"name": "theory",
                                      "style": "display: none;"})
 
-languages_widget = CheckboxSelectMultiple(attrs={"class": "checkBoxed",}) 
+checkbox_select_widget = CheckboxSelectMultiple(attrs={"class": "checkBoxed",}) 

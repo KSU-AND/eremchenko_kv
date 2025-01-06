@@ -1,7 +1,5 @@
 from django.db import models
 
-from .language import Language
-
 
 class TheoryBlock(models.Model):
     class Meta:
@@ -11,7 +9,6 @@ class TheoryBlock(models.Model):
     title = models.CharField(max_length=128)
     outline = models.TextField(blank=True)
     text = models.TextField(blank=True)
-    languages = models.ManyToManyField(Language, related_name="theory_blocks")
 
     def __str__(self) -> str:
         return self.title

@@ -2,7 +2,7 @@ from django import forms
 
 from ..models.theory import TheoryBlock
 from ..models.language import Language
-from ..forms.widgets import textarea_hidden_widget, languages_widget
+from ..forms.widgets import textarea_hidden_widget, checkbox_select_widget
 
 
 class TheoryTitleForm(forms.ModelForm):
@@ -26,10 +26,9 @@ class TheoryTextForm(forms.ModelForm):
         labels = {'text': ''}
         widgets = {'text': textarea_hidden_widget}
 
-class LanguageForm(forms.ModelForm):
+class  TheoryBlocksForm(forms.ModelForm):
     class Meta:
-        model = TheoryBlock
-        fields = ['languages']
-        labels = {'languages': ''}
-        widgets = {'languages': languages_widget}
-    
+        model = Language
+        fields = ['theory_blocks']
+        labels = {'theory_blocks': ''}
+        widgets = {'theory_blocks': checkbox_select_widget}

@@ -17,11 +17,6 @@
   <div class="theory text"> {{theory_block.text|safe}}</div>
   <hr>
   <h6>Языки, где встречается этот теоретический блок</h6>
-  <form  method="post">
-    {% csrf_token %}
-    {{forms.languages.languages}}
-    <button type="submit" value="add-language">ADD</button>
-  </form>
   {% include 'block/languages_table.html' with languages=theory_block.languages.all %}
 {% endblock %}
 

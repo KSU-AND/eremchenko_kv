@@ -49,6 +49,10 @@
 }
 .deleteButton:hover {background-color: brown;}
 
+.addTheoryButton {
+    top: 11vh;
+    right: 3.5%;
+}
 
 .texteditor-toolbar {
     top: 40vh;

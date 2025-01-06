@@ -91,24 +91,8 @@
     {% endif %}
   </div>
 
-  <hr>  
   <div id="all_theory_blocks">
-    {% for theory_block in theory_blocks %}
-    <div class="theoryBlock">
-      <h6 onclick="theoryBlockToggle(this)">
-        <i class="fas fa-brain"></i> 
-        {{theory_block.title}} 
-        <i class="fas fa-eye-slash"></i>
-      </h6>
-      <div class="theory outline"> {{theory_block.outline|safe}}
-      <div class="link" style="text-align: end;">
-          <a href="{% url 'fpt.theory.view' %}?id={{theory_block.id}}">
-            Читать продолжение в источнике...
-          </a>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
+    {% include 'block/theory_blocks.html' %}
   </div>
 
   <hr>  
@@ -126,6 +110,23 @@
       <button type="button" class="add-comment-button" onclick="postAddComment(this)">+</button>
     </div>
   </form>
+  {% endif %}
+{% endblock %}
+
+
+{% block edit %}
+  {% if not user.is_anonymous %}
+  <a class="sidebutton addTheoryButton fas fa-brain" onclick="toggleTheoryBlocksOverlay()"></a>
+  <div id="theoryBlocksBack" onclick="toggleTheoryBlocksOverlay()"></div>
+  <div id="theoryBlocksDiv">
+    <form method="post" id="theoryBlocksForm">
+      {% csrf_token %}
+      {{forms.theory_blocks}}
+      <!-- <button type="submit" value="add-theory" class="fas fa-floppy-disk"></button> -->
+      <input type="hidden" name="theory_blocks">
+    </form>
+    <button class="fas fa-floppy-disk" onclick="postTheoryBlocks(this)"></button>
+  </div>
   {% endif %}
 {% endblock %}
 
