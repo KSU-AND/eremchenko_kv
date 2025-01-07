@@ -1,6 +1,10 @@
 .images-div {
     display: flex;
     flex-wrap: wrap;
+    >img {
+        height: min-content;
+        cursor: zoom-in;
+    }
 }
 
 .imageBase {
@@ -19,6 +23,7 @@
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 1;
+    cursor: zoom-out;
 }
 .imageOver{
     display: block;
