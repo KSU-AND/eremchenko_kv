@@ -114,7 +114,7 @@ table.language-info {
     thead tr {
         background-color: var(--secondery-color-dd);
         font-weight: bold;
-        th {padding: 4px;}
+        th {padding: 12px;}
         th:first-child {border-top-left-radius: 8px;}
         th:last-child {border-top-right-radius: 8px;}
         th:nth-child(2) {border-left: 3px solid var(--main-color);}
@@ -127,7 +127,7 @@ table.language-info {
         td:nth-child(2) {border-left: 3px solid var(--main-color);}
         td:nth-child(3) {border-right: 3px solid var(--main-color);}
         td {
-            padding: 4px;
+            padding: 12px;
             max-width:10vw;
         }
     }

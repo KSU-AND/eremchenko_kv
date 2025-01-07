@@ -37,42 +37,42 @@
   <table class="language-info">
     <thead>
       <tr>
-        <th class="">Система времён</th>
-        <th class="">FUT</th>
-        <th class="">PST</th>
-        <th class="">мрф-мрф</th>
-        <th class="">анл-мрф</th>
-        <th class="">мрф-анл</th>
-        <th class="">анл-анл</th>
+        <th>Система времён</th>
+        <th>FUT</th>
+        <th>PST</th>
+        <th>мрф-мрф</th>
+        <th>анл-мрф</th>
+        <th>мрф-анл</th>
+        <th>анл-анл</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td class="">
+        <td class="ts">
           {% if user.is_anonymous %} {{cur_lang.tense_system}}
           {% else %}<form method="post">{% csrf_token %}{{ forms.ts }}</form>{% endif %}
         </td>
-        <td class="">
+        <td>
           {% if user.is_anonymous %} {{cur_lang.fut}}
           {% else %}<form method="post">{% csrf_token %}{{ forms.fut }}</form>{% endif %}
         </td>
-        <td class="">
+        <td>
           {% if user.is_anonymous %} {{cur_lang.pst}}
           {% else %}<form method="post">{% csrf_token %}{{ forms.pst }}</form>{% endif %}
         </td>
-        <td class="">
+        <td>
           {% if user.is_anonymous %} {{cur_lang.mm}}
           {% else %}<form method="post">{% csrf_token %}{{ forms.mm }}</form>{% endif %}
         </td>
-        <td class="">
+        <td>
           {% if user.is_anonymous %} {{cur_lang.am}}
           {% else %}<form method="post">{% csrf_token %}{{ forms.am }}</form>{% endif %}
         </td>
-        <td class="">
+        <td>
           {% if user.is_anonymous %} {{cur_lang.ma}}
           {% else %}<form method="post">{% csrf_token %}{{ forms.ma }}</form>{% endif %}
         </td>
-        <td class="">
+        <td>
           {% if user.is_anonymous %} {{cur_lang.aa}}
           {% else %}<form method="post">{% csrf_token %}{{ forms.aa }}</form>{% endif %}
         </td>
