@@ -255,18 +255,6 @@ table.home .dop-info {
     padding: 8px;
 }
 
-.images-div {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-}
-.images-div img {
-    max-width: 10%;
-    padding: 8px;
-}
-.images-div .img-zoom:hover {
-    max-width: 100%;
-}
 
 
 

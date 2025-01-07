@@ -77,6 +77,11 @@ def language_page(request):
                                                                     "form": comment_form,
                                                                     "images": images}
                                                                     })
+        if request.POST.get("delete_image") is not None:
+            comment_image_to_delete = CommentImage.objects.get(id=request.POST.get("delete_image"))
+            comment_image_to_delete.delete()
+            return HttpResponse(status=200)
+        
         if request.POST.get("comment_was_edited") is not None:
             comment_ids = [k.split('-')[0] for k in request.POST.keys() 
                            if not k.startswith("csrf") and k.endswith("comment")]

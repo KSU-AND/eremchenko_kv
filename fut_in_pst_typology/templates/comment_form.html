@@ -14,7 +14,7 @@
 
   <div class="images-div">
     {% for img in comment.images %}
-    <img src="{{img.image.url}}" class="img-cmnt">
+      {% include 'block/image.html' %}
     {% endfor %}
     {% if not user.is_anonymous %}
     <form method="post" class="add-image-form" id="{{field.html_name}}-image">
