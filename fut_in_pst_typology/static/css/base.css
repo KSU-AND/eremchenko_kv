@@ -164,6 +164,8 @@ table.home .dop-info {
     text-align: left;
     font-size: 0.8em;
     padding: 0px 8px;
+    max-height: 32.5vh;
+    overflow-y: auto;
     display: none;
     p {
         margin-top: 0.5em;
