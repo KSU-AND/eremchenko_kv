@@ -1,6 +1,8 @@
-<img src="{{img.image.url}}" class="imageBase" onclick="turnOnImageShow(this)">
+<img src="{{img.image.url}}" class="imageBase" id="image_{{img.id}}" onclick="turnOnImageShow(this)">
 <div class="modalContainer" onclick="turnOffImageShow(this)">
-    <div>
-        <img src="{{img.image.url}}" class="imageOver">
-    </div>
+    {% if not user.is_anonymous %}
+    <button class="deleteImageButton fas fa-trash" onclick="deleteImage(this)"></button>
+    <form method="post">{% csrf_token %}<input type="hidden" name="delete_image" value="{{img.id}}"></form>
+    {% endif %}
+    <img src="{{img.image.url}}" class="imageOver">
 </div>

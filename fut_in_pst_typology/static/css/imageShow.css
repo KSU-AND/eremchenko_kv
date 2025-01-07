@@ -28,18 +28,35 @@
 .imageOver{
     display: block;
     position: fixed;
-    top: 50%;
+    top: calc(var(--top-nav-h) + 5vh);
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0);
     
     max-width: 80vw;
-    max-height: 90vh;
+    max-height: calc(80vh - var(--top-nav-h));
     z-index: 2;
     border-radius: 16px;
     border: 4px solid var(--secondery-color-d);
 }
 
-.modalContainer.active{
+.modalContainer.active {
     visibility: visible;
     opacity: 1;
+}
+
+.deleteImageButton {
+    position: fixed;
+    top: 90vh;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 2px solid brown;
+    background-color: var(--secondery-color);
+}
+.deleteImageButton:hover {
+    background-color: brown;
+    color: white
 }
