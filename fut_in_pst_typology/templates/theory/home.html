@@ -16,6 +16,8 @@
 {% endblock %}
 
 {% block edit %}
+  {% if not user.is_anonymous %}
   <a class="sidebutton createButton fas fa-plus" 
       href="{% url 'fpt.theory.create' %}"></a>
+  {% endif %}
 {% endblock %}
