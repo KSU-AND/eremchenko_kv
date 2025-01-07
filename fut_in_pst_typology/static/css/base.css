@@ -134,7 +134,7 @@ table.home tbody.home tr:hover {
 }
 table.home {
     td {
-        align-content: baseline;
+        align-content: start;
         text-align: center;
         padding: 12px;
     }
@@ -142,6 +142,7 @@ table.home {
     .lang {
         text-align: left;
         width: 15%;
+        padding: 8px 12px;
     }
     .ts {width: 10%;}
     .tm {width: 7%;}
@@ -151,6 +152,7 @@ table.home {
     .title {
         text-align: left;
         width: 75%;
+        padding: 8px 12px;
     }
     thead .title {padding: 20px;}
     .langs {
