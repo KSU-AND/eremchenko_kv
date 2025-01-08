@@ -32,11 +32,12 @@ function postAddComment(button) {
     xhr.open('POST', document.URL, true);
     xhr.onload = function() {
         if (xhr.status === 200) {
-            let comment = document.createElement('div');
-            comment.innerHTML = xhr.response;
-            addTextareaInputListener(comment.firstElementChild.firstElementChild);
+            let help_div = document.createElement('div');
+            help_div.innerHTML = xhr.response;
+            comment = help_div.firstChild;
             document.getElementById('all_comments').appendChild(comment);
-            comment.firstElementChild.firstElementChild.focus();
+            addTextareaInputListener(comment.querySelector(".commentForm .comment"));
+            comment.querySelector(".commentForm .comment").focus();
         }
     }
     xhr.send(new FormData(button.parentNode.parentNode));
@@ -49,7 +50,7 @@ function postComment(current_comment) {
     xhr.onload = function() {
         let comment_form = current_comment.parentNode.parentNode;
         if (xhr.status === 200) {
-            animate(current_comment, 'comment-animation')
+            animate(current_comment, 'comment-animation');
             if (current_comment.value == "")
                 document.getElementById('all_comments').removeChild(comment_form);
         }
