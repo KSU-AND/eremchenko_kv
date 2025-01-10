@@ -41,10 +41,16 @@ body {
     grid-template-rows: auto 1fr auto;
     main {align-self: start;}
 }
+h2 {
+    text-align: center;
+    color: var(--main-text-color-ll);
+    margin: 32px 0 0;
+    padding: 0.5em;
+}
 h5{
     font-size: var(--h5-size);
     color: var(--main-text-color-ll);
-    margin: 8px 8px 4px;
+    margin: 16px 8px 8px;
 }
 h6{
     font-size: var(--h6-size);
