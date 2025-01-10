@@ -1,17 +1,18 @@
 from django.urls import path
 
-from fut_in_pst_typology.views.home import home_page
-from fut_in_pst_typology.views.theory import theory_page
-from fut_in_pst_typology.views.theory import theory_view_page, theory_edit_page, theory_create, theory_delete
+from .views.home import home_page
+from .views.theory import theory_page
+from .views.theory import theory_view_page, theory_edit_page, theory_create, theory_delete
+from .views.statistics import stats_page
 
-from fut_in_pst_typology.views.language import language_page
-from fut_in_pst_typology.views.family import family_page
-from fut_in_pst_typology.views.genus import genus_page
+from .views.language import language_page
+from .views.family import family_page
+from .views.genus import genus_page
 
 
 fpturlpatterns = [
     path('', home_page, name="fpt"),
-    path('statistics/', home_page, name="fpt.statistics"),
+    path('statistics/', stats_page, name="fpt.statistics"),
 
     path('theory/', theory_page, name="fpt.theory"),
     path('theory/view/', theory_view_page, name="fpt.theory.view"),

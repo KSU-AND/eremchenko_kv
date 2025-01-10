@@ -1,0 +1,18 @@
+<div class="progressBar">
+    <div class="progressSection all" style="width: {{param.all.pcnt}}%" 
+        title="Кол-во языков, где установлено все">
+        {{param.all.num}}
+    </div>
+    
+    {% if param.any %}
+    <div class="progressSection any" style="width: {{param.any.pcnt}}%" 
+    title="Кол-во языков, где установлено хотя бы одно">
+        {{param.any.num}}
+    </div>
+    {% endif %}
+    
+    <div class="progressSection not" style="width: {{param.not.pcnt}}%" 
+    title="Кол-во языков, где не установлено">
+        {{param.not.num}}
+    </div>
+</div>

@@ -1,0 +1,28 @@
+.progressBar {
+    width: 100%;
+    background-color: var(--secondery-color);
+    display: flex;
+    text-align: center;
+}
+.progressSection {
+    padding: 0.5em 0;
+    font-weight: bold;
+    cursor: help;
+}
+
+.progressSection.all{
+    background-color: var(--main-color-dd);
+    color: white;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+.progressSection.any{
+    background-color: var(--main-color);
+    color: white;
+}
+.progressSection.not{
+    background-color: var(--secondery-color-dd);
+    color: var(--main-text-color);
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}

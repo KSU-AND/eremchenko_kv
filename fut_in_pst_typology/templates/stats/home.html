@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Статистика{% endblock title %}
+
+{% block content %}
+
+<h5>Система времени</h5>
+{% include 'block/progress_bar.html' with param=ts %}
+
+<h5>Маркеры времени</h5>
+{% include 'block/progress_bar.html' with param=marks %}
+
+<h5>Комбинации маркеров</h5>
+{% include 'block/progress_bar.html' with param=combs %}
+
+<h5>Главный комментарий</h5>
+{% include 'block/progress_bar.html' with param=main_comment %}
+
+{% endblock content %}
