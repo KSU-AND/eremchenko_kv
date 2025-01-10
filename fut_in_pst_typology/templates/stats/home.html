@@ -1,8 +1,11 @@
 {% extends "base.html" %}
-
 {% block title %}Статистика{% endblock title %}
+{% block aside %}{% endblock aside %}
+
 
 {% block content %}
+
+<h1 class="title">Статистические данные</h1>
 
 <h5>Система времени</h5>
 {% include 'block/progress_bar.html' with param=ts %}
