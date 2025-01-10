@@ -100,11 +100,6 @@ h1.title {
     }
 }
 
-h6 {
-    color: var(--main-text-color-ll);
-    margin: 8px 8px 0px;
-}
-
 table.language-info {
     width: 100%;
     margin-top: 8px;
@@ -151,10 +146,6 @@ table.language-info {
     .comment {margin: 0px;}
 }
 .one-comment-div {
-    h6 {
-        color: var(--main-text-color-ll);
-        margin: 8px 8px 0px;
-    }
     .comment {
         margin: 0px;
     }
