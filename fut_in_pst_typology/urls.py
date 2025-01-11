@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views.home import home_page
+from .views.summary import summary_page
 from .views.theory import theory_page
 from .views.theory import theory_view_page, theory_edit_page, theory_create, theory_delete
 from .views.statistics import stats_page
@@ -11,7 +11,7 @@ from .views.genus import genus_page
 
 
 fpturlpatterns = [
-    path('', home_page, name="fpt"),
+    path('', summary_page, name="fpt"),
     path('statistics/', stats_page, name="fpt.statistics"),
 
     path('theory/', theory_page, name="fpt.theory"),
@@ -20,7 +20,7 @@ fpturlpatterns = [
     path('theory/create/', theory_create, name="fpt.theory.create"),
     path('theory/delete/', theory_delete, name="fpt.theory.delete"),
 
-    path('summary/', home_page, name="fpt.summary"),
+    path('summary/', summary_page, name="fpt.summary"),
     path('language/', language_page, name="fpt.language"),
     path('family/', family_page, name="fpt.family"),
     path('genus/', genus_page, name="fpt.genus"),
