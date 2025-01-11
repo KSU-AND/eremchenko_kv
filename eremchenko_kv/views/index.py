@@ -1,9 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
+from django.urls import reverse
 
 
 def index_page(request):
-    print(request.user.is_anonymous)
-    context = {
-        "user": request.user,
-    }
-    return render(request, "index.html", context)
+    return redirect(reverse("fpt"))
