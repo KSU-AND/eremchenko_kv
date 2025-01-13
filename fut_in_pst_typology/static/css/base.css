@@ -214,6 +214,7 @@ table.home .dop-info {
     border: 2px solid var(--secondery-color-dd);
     border-radius: 8px;
     font-size: 1.2em;
+    font-family: monospace;
     box-sizing: border-box;
     background-color: var(--secondery-color);
     resize: none;

@@ -1,5 +1,6 @@
 from django.urls import path
 
+from .views.home import home_page
 from .views.summary import summary_page
 from .views.theory import theory_page
 from .views.theory import theory_view_page, theory_edit_page, theory_create, theory_delete
@@ -11,7 +12,7 @@ from .views.genus import genus_page
 
 
 fpturlpatterns = [
-    path('', summary_page, name="fpt"),
+    path('', home_page, name="fpt"),
     path('statistics/', stats_page, name="fpt.statistics"),
 
     path('theory/', theory_page, name="fpt.theory"),
