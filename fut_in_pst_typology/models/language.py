@@ -11,11 +11,12 @@ class Language(models.Model):
         verbose_name_plural = "Языки"
     
     class TenseSystem(models.TextChoices):
-        f = "fut / non-fut",    gtl("fut / non-fut")
-        p = "pst / non-pst",    gtl("pst / non-pst")
-        t = "3 part",           gtl("Трёхчастная") 
-        n = "no tenses",        gtl("Нет времён")
-        __empty__ =             gtl("(Unknown)")
+        fut = "fut / non-fut",    gtl("fut / non-fut")
+        prs = "prs / non-prs",    gtl("prs / non-prs")
+        pst = "pst / non-pst",    gtl("pst / non-pst")
+        thr = "3 part",           gtl("Трёхчастная") 
+        no = "no tenses",         gtl("Нет времён")
+        __empty__ =               gtl("(Unknown)")
     
     class TenseMarker(models.TextChoices):
         m = "Mrph",     gtl("Морфологич.")
