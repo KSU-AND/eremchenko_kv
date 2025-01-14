@@ -5,6 +5,6 @@ from fut_in_pst_typology.models.language import Language
 
 def summary_page(request):
     context = {
-        "languages": Language.objects.all(),
+        "languages": Language.objects.select_related("genus", "family").all(),
     }
     return render(request, "summary.html", context)
