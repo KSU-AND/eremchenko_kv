@@ -6,7 +6,7 @@ from ..forms.theory_form import TheoryTitleForm, TheoryOutlineForm, TheoryTextFo
 
 def theory_page(request):
     context = {
-        "theory_blocks": TheoryBlock.objects.all(),
+        "theory_blocks": TheoryBlock.objects.order_by("title").all(),
     }
     return render(request, "theory/home.html", context)
 

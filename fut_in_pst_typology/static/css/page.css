@@ -201,7 +201,7 @@ table.language-info {
 }
 #theoryBlocksDiv {
     position: fixed;
-    width: 20vw;
+    width: 30vw;
     left: 100vw;
     top: var(--top-nav-h);
     bottom: 0;
@@ -230,7 +230,7 @@ table.language-info {
     }
 }
 #theoryBlocksDiv.active{
-    left: calc(80vw - 16px);
+    left: calc(70vw - 16px);
     visibility: visible;
 }
 #theoryBlocksForm fieldset {

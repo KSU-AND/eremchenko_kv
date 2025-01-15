@@ -1,1 +1,5 @@
-<button class="button-sort-table fas fa-arrows-up-down" onclick="sortTable(this)"></button>
+{% if az %}
+    <button class="button-sort-table fas fa-arrow-down-a-z" onclick="sortTable(this)"></button>
+{% else %}
+    <button class="button-sort-table fas fa-arrows-up-down" onclick="sortTable(this)"></button>
+{% endif %}

@@ -106,9 +106,9 @@ def language_page(request):
     context = {
         "user": request.user,
         "cur_lang": cur_lang_obj,
-        "languages": Language.objects.all(),
-        "genuses": Genus.objects.all(),
-        "families": Family.objects.all(),
+        "languages": Language.objects.order_by("name").all(),
+        "genuses": Genus.objects.order_by("name").all(),
+        "families": Family.objects.order_by("name").all(),
         "theory_blocks": cur_lang_obj.theory_blocks.all(),
         "forms":{
             "ts": TenseSystemForm(instance=cur_lang_obj),

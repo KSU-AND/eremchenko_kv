@@ -38,14 +38,16 @@ function sortTable(button) {
         let a = rowA.cells[columnIndex].textContent.trim();
         let b = rowB.cells[columnIndex].textContent.trim();
 
-        if (ascending) {
-            return a=='' || a.localeCompare(b);
-        } else {
-            return b=='' || b.localeCompare(a);
-        }
+        if (a == b) return 0;
+        if (a == '') return 3;
+        if (b == '') return -3;
+        if (a == '---') return 2;
+        if (b == '---') return -2;
+
+        if (ascending) return a < b ? -1 : 1; 
+        else return a < b ? 1 : -1; 
     });
     
-    // Append sorted rows back to the table
     for (let row of rows) {
         table.tBodies[0].appendChild(row);
     }
