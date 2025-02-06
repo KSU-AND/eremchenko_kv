@@ -20,6 +20,6 @@ fpt_url_patterns = [
     path('theory/', include(theory_url_patterns)),
 
     path('language/<str:code>', language.LanguageView.as_view(), name="fpt.language"),
-    path('family/', family.FamilyView.as_view(), name="fpt.family"),
-    path('genus/', genus.GenusView.as_view(), name="fpt.genus"),
+    path('family/<int:id>', family.FamilyView.as_view(), name="fpt.family"),
+    path('genus/<int:id>', genus.GenusView.as_view(), name="fpt.genus"),
 ]

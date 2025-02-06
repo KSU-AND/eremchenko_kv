@@ -8,11 +8,8 @@ from ..models.language import Language
 
 
 class FamilyView(View):
-    def get(self, request):
-        if "name" not in request.GET:
-            return redirect(reverse("fpt"))
-        
-        current_family = Family.objects.get(name=request.GET.get("name"))
+    def get(self, request, id):
+        current_family = Family.objects.get(id=id)
         
         context = {
             "cur_family": current_family,

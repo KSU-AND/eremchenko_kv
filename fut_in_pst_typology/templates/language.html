@@ -19,12 +19,12 @@
         <tbody>
           <tr>
             <td>
-              <a href='{% url "fpt.genus" %}?name={{cur_lang.genus.name}}'>
+              <a href='{% url "fpt.genus" cur_lang.genus.id %}'>
                 {{cur_lang.genus.name}}
               </a>
             </td>
             <td>
-              <a href='{% url "fpt.family" %}?name={{cur_lang.family.name}}'>
+              <a href='{% url "fpt.family" cur_lang.family.id %}'>
                 {{cur_lang.family.name}}
               </a>
             </td>

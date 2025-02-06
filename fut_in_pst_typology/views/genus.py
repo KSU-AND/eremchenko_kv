@@ -8,11 +8,8 @@ from ..models.language import Language
 
 
 class GenusView(View):
-    def get(self, request):
-        if "name" not in request.GET:
-            return redirect(reverse("fpt"))
-        
-        current_genus = Genus.objects.get(name=request.GET.get("name"))
+    def get(self, request, id):
+        current_genus = Genus.objects.get(id=id)
         
         context = {
             "cur_genus": current_genus,
