@@ -14,11 +14,11 @@
     </thead>
     <tbody class="home">
       {% for l in languages %}
-      {% url 'fpt.language' as lang_url %}
+      {% url 'fpt.language' l.code as lang_url %}
       <tr onclick="toggleInfoInRow(this)">
         <td class="code">{{l.code}}</td>
         <td class="lang">
-          <a href='{{lang_url}}?code={{l.code}}'>{{ l.name }}</a>
+          <a href='{{lang_url}}'>{{ l.name }}</a>
           <div class="dop-info">
             {% if not only_family %}
                 <p><i class="fa-solid fa-campground"></i> {{ l.genus }}</p>

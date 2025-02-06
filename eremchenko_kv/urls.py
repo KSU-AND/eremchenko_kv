@@ -5,13 +5,13 @@ from django.conf.urls.static import static
 from eremchenko_kv import settings
 from eremchenko_kv.views.index import index_page
 
-from fut_in_pst_typology.urls import fpturlpatterns
+from fut_in_pst_typology.urls import fpt_url_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index_page),
     
-    path('fut-in-pst-typology/', include(fpturlpatterns)),
+    path('fut-in-pst-typology/', include(fpt_url_patterns)),
 ]
 
 if settings.DEBUG:

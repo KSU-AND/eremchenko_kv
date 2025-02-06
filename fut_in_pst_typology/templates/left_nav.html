@@ -4,7 +4,7 @@
         <ul>
         {% for i in languages %}
             <li>
-                <a href='{% url "fpt.language" %}?code={{i.code}}'>{{ i.name }}</a>
+                <a href='{% url "fpt.language" i.code %}'>{{ i.name }}</a>
             </li>
         {% endfor %}
         </ul>

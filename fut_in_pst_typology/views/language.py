@@ -1,3 +1,4 @@
+from django.views import View
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -14,47 +15,74 @@ from ..forms.comment_form import CommentForm
 from ..forms.theory_form import TheoryBlocksForm
 
 
-def language_page(request):
-    cur_lang_code = request.GET.get("code")
-    cur_lang_obj = Language.objects.get(code=cur_lang_code)
+class LanguageView(View):
+    def get(self, request, code):
 
-    comments = Comment.objects.filter(lang=cur_lang_obj)
+        current_language = Language.objects.get(code=code)
+        comments = Comment.objects.filter(lang=current_language)
 
-    if request.method == 'POST':
+        context = {
+            "user": request.user,
+            "cur_lang": current_language,
+            "languages": Language.objects.order_by("name").all(),
+            "genuses": Genus.objects.order_by("name").all(),
+            "families": Family.objects.order_by("name").all(),
+            "theory_blocks": current_language.theory_blocks.all(),
+            "forms":{
+                "ts": TenseSystemForm(instance=current_language),
+                "fut": FutForm(instance=current_language),
+                "pst": PstForm(instance=current_language),
+                "mm": MMForm(instance=current_language),
+                "ma": MAForm(instance=current_language),
+                "am": AMForm(instance=current_language),
+                "aa": AAForm(instance=current_language),
+                "main_comment": MainCommentForm(instance=current_language),
+                "comments": [{"c": c,
+                              "form": CommentForm(instance=c, prefix=str(c.id)),
+                              "images": CommentImage.objects.filter(comment=c),
+                              } for c in comments],
+                "theory_blocks": TheoryBlocksForm(instance=current_language)
+            },
+        }
+        return render(request, "language.html", context)
+
+    def post(self, request, code):
+        current_language = Language.objects.get(code=code)
+
         if request.POST.get("pst") is not None:
-            pst_form = PstForm(request.POST, instance=cur_lang_obj)
+            pst_form = PstForm(request.POST, instance=current_language)
             pst_form.save()
             return HttpResponse(status=200)
         if request.POST.get("fut") is not None:
-            fut_form = FutForm(request.POST, instance=cur_lang_obj)
+            fut_form = FutForm(request.POST, instance=current_language)
             fut_form.save()
             return HttpResponse(status=200)
         if request.POST.get("tense_system") is not None:
-            tense_system_form = TenseSystemForm(request.POST, instance=cur_lang_obj)
+            tense_system_form = TenseSystemForm(request.POST, instance=current_language)
             tense_system_form.save()
             return HttpResponse(status=200)
         if request.POST.get("mm") is not None:
-            mm_form = MMForm(request.POST, instance=cur_lang_obj)
+            mm_form = MMForm(request.POST, instance=current_language)
             mm_form.save()
             return HttpResponse(status=200)
         if request.POST.get("ma") is not None:
-            ma_form = MAForm(request.POST, instance=cur_lang_obj)
+            ma_form = MAForm(request.POST, instance=current_language)
             ma_form.save()
             return HttpResponse(status=200)
         if request.POST.get("am") is not None:
-            am_form = AMForm(request.POST, instance=cur_lang_obj)
+            am_form = AMForm(request.POST, instance=current_language)
             am_form.save()
             return HttpResponse(status=200)
         if request.POST.get("aa") is not None:
-            aa_form = AAForm(request.POST, instance=cur_lang_obj)
+            aa_form = AAForm(request.POST, instance=current_language)
             aa_form.save()
             return HttpResponse(status=200)
         if request.POST.get("main_comment") is not None:
-            main_comment_form = MainCommentForm(request.POST, instance=cur_lang_obj)
+            main_comment_form = MainCommentForm(request.POST, instance=current_language)
             main_comment_form.save()
             return HttpResponse(status=200)
         if request.POST.get("add_comment") is not None:
-            new_comment = Comment.objects.create(lang=cur_lang_obj)
+            new_comment = Comment.objects.create(lang=current_language)
             new_comment_form = CommentForm(instance=new_comment, prefix=str(new_comment.id))
             return render(request, "comment_form.html", {"comment":{"c": new_comment,
                                                                     "form": new_comment_form,
@@ -94,36 +122,11 @@ def language_page(request):
             post = dict(request.POST)
             post["theory_blocks"] = [i for i in post["theory_blocks"] if i]
             if post["theory_blocks"]:
-                theory_blocks_form = TheoryBlocksForm(post, instance=cur_lang_obj)
+                theory_blocks_form = TheoryBlocksForm(post, instance=current_language)
                 theory_blocks_form.save()
-                return render(request, "block/theory_blocks.html", {"theory_blocks": cur_lang_obj.theory_blocks.all()})
+                return render(request, "block/theory_blocks.html", {"theory_blocks": current_language.theory_blocks.all()})
             else:
-                theory_blocks = cur_lang_obj.theory_blocks.all()
+                theory_blocks = current_language.theory_blocks.all()
                 for tb in theory_blocks:
-                    cur_lang_obj.theory_blocks.remove(tb)
+                    current_language.theory_blocks.remove(tb)
                 return render(request, "block/theory_blocks.html")
-
-    context = {
-        "user": request.user,
-        "cur_lang": cur_lang_obj,
-        "languages": Language.objects.order_by("name").all(),
-        "genuses": Genus.objects.order_by("name").all(),
-        "families": Family.objects.order_by("name").all(),
-        "theory_blocks": cur_lang_obj.theory_blocks.all(),
-        "forms":{
-            "ts": TenseSystemForm(instance=cur_lang_obj),
-            "fut": FutForm(instance=cur_lang_obj),
-            "pst": PstForm(instance=cur_lang_obj),
-            "mm": MMForm(instance=cur_lang_obj),
-            "ma": MAForm(instance=cur_lang_obj),
-            "am": AMForm(instance=cur_lang_obj),
-            "aa": AAForm(instance=cur_lang_obj),
-            "main_comment": MainCommentForm(instance=cur_lang_obj),
-            "comments": [{"c": c,
-                          "form": CommentForm(instance=c, prefix=str(c.id)),
-                          "images": CommentImage.objects.filter(comment=c),
-                          } for c in comments],
-            "theory_blocks": TheoryBlocksForm(instance=cur_lang_obj)
-        },
-    }
-    return render(request, "language.html", context)
