@@ -54,6 +54,13 @@
     right: 3.5%;
 }
 
+
+.progressSelect{
+    top: calc(11vh + 64px);
+    right: 1%;
+}
+
+
 .texteditor-toolbar {
     top: 40vh;
     left: 3.5%;

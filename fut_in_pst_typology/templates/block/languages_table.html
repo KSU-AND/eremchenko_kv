@@ -1,7 +1,7 @@
 <table class="home">
     <thead>
       <tr>
-        <th class="code">Код</th>
+        <th class="code">{% include "block/sort_button.html" %}ST</th>
         <th class="lang">{% include "block/sort_button.html" with az=1 %}Язык</th>
         <th class="ts">{% include "block/sort_button.html" %}Система времён</th>
         <th class="tm">{% include "block/sort_button.html" %}FUT</th>
@@ -16,7 +16,20 @@
       {% for l in languages %}
       {% url 'fpt.language' l.code as lang_url %}
       <tr onclick="toggleInfoInRow(this)">
-        <td class="code">{{l.code}}</td>
+        <td class="code">
+          {% if l.progress == "DN" %} 
+            <i class="fas fa-circle-check" style="color: var(--main-color);"></i>
+            <p style="display: none;">DN</p>
+          {% elif l.progress == "CH" %} 
+            <i class="fas fa-circle-exclamation" style="color: brown;"></i>
+            <p style="display: none;">CH</p>
+          {% elif l.progress == "IP" %} 
+            <i class="fas fa-circle" style="color: var(--main-color-l);"></i>
+            <p style="display: none;">IP</p>
+          {% else %} 
+            <i class="far fa-circle" style="color: var(--main-color-ll);"></i>
+          {% endif %}
+        </td>
         <td class="lang">
           <a href='{{lang_url}}'>{{ l.name }}</a>
           <div class="dop-info">

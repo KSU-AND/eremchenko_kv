@@ -13,6 +13,7 @@ from ..forms.combinations_form import MMForm, MAForm, AMForm, AAForm
 from ..forms.main_comment_form import MainCommentForm
 from ..forms.comment_form import CommentForm
 from ..forms.theory_form import TheoryBlocksForm
+from ..forms.progress_form import ProgressForm
 
 
 class LanguageView(View):
@@ -37,6 +38,7 @@ class LanguageView(View):
                 "am": AMForm(instance=current_language),
                 "aa": AAForm(instance=current_language),
                 "main_comment": MainCommentForm(instance=current_language),
+                "progress": ProgressForm(instance=current_language),
                 "comments": [{"c": c,
                               "form": CommentForm(instance=c, prefix=str(c.id)),
                               "images": CommentImage.objects.filter(comment=c),
@@ -80,6 +82,10 @@ class LanguageView(View):
         if request.POST.get("main_comment") is not None:
             main_comment_form = MainCommentForm(request.POST, instance=current_language)
             main_comment_form.save()
+            return HttpResponse(status=200)
+        if request.POST.get("progress") is not None:
+            progress_form = ProgressForm(request.POST, instance=current_language)
+            progress_form.save()
             return HttpResponse(status=200)
         if request.POST.get("add_comment") is not None:
             new_comment = Comment.objects.create(lang=current_language)

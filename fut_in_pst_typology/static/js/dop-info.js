@@ -23,7 +23,7 @@ function sortTable(button) {
     [...document.getElementsByClassName('button-sort-table')].forEach(function(btn, i){
         let newClass = 'fa-arrows-up-down';
         if (btn == button){
-            columnIndex = i+1;
+            columnIndex = i;
             newClass = ascending ? 'fa-arrow-down-a-z' : 'fa-arrow-down-z-a';
         }
         btn.classList.remove('fa-arrow-down-z-a');

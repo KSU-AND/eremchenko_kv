@@ -31,6 +31,12 @@ class Language(models.Model):
         Q = "?",         gtl("Непонятно")
         T = "---",       gtl("Невозможно") 
         __empty__ =      gtl("(Unknown)")
+        
+    class Status(models.TextChoices):
+        DONE = "DN",    gtl("Закончен")
+        CHECK = "CH",   gtl("Проверить")
+        INPROG = "IP",  gtl("Начат") 
+        __empty__ =     gtl("Не начат")
 
     code = models.CharField(max_length=5, unique=True)
     name = models.CharField(max_length=50)
@@ -48,6 +54,7 @@ class Language(models.Model):
     aa = models.CharField(max_length=10, choices=CombOptionState, blank=True)
 
     main_comment = models.TextField(blank=True)
+    progress = models.CharField(max_length=2, choices=Status, blank=True)
     
     theory_blocks = models.ManyToManyField(TheoryBlock, related_name="languages")
 
