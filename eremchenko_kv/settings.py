@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pwa',
     'fut_in_pst_typology'
 ]
 
@@ -117,6 +118,38 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+
+# PWA SETTINGS
+
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, '/static/js', 'serviceworker.js')
+# PWA_APP_NAME = 'Типология будущего в прошедшем'
+# PWA_APP_DESCRIPTION = 'Исследование Еремченко К.В. "Типология будущего в прошедшем"'
+# PWA_APP_THEME_COLOR = '#000000'
+# PWA_APP_BACKGROUND_COLOR = '#ffffff'
+# PWA_APP_DISPLAY = 'standalone'
+# PWA_APP_SCOPE = '/'
+# PWA_APP_ORIENTATION = 'any'
+# PWA_APP_START_URL = '/fut-in-pst-typology/'
+# PWA_APP_STATUS_BAR_COLOR = 'default'
+# PWA_APP_ICONS = [
+# 	{
+# 		'src': 'static/favicon.png',
+# 		'sizes': '160x160'
+# 	},
+# 	{
+# 		'src': 'static/favicon.ico',
+# 		'sizes': '16x16'
+# 	}
+# ]
+# PWA_APP_SPLASH_SCREEN = [
+# 	{
+# 		'src': 'static/favicon.png',
+# 		'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
+# 	}
+# ]
+# PWA_APP_DIR = 'ltr'
+# PWA_APP_LANG = 'en-US'
 
 
 # Default primary key field type

@@ -1,0 +1,13 @@
+{
+    "name": "Типология будущего в прошедшем",
+    "short_name": "ТБвП",
+    "icons": [{
+        "src": "static/favicon.png",
+        "sizes": "160x160",
+        "type": "image/png"
+    }],
+    "start_url": "/fut-in-pst-typology/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff"
+}
