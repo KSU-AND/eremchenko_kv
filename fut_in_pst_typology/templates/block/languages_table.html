@@ -18,17 +18,17 @@
       <tr onclick="toggleInfoInRow(this)">
         <td class="code">
           {% if l.progress == "DN" %} 
-            <i class="fas fa-circle-check" style="color: var(--main-color);"></i>
-            <p style="display: none;">DN</p>
+            <i class="fas fa-circle-check" style="color: var(--main-color);" title="Сделано"></i>
           {% elif l.progress == "CH" %} 
-            <i class="fas fa-circle-exclamation" style="color: brown;"></i>
-            <p style="display: none;">CH</p>
+            <i class="fas fa-circle-exclamation" style="color: brown;" title="Проверить!"></i>
           {% elif l.progress == "IP" %} 
-            <i class="fas fa-circle" style="color: var(--main-color-l);"></i>
-            <p style="display: none;">IP</p>
+            <i class="fas fa-circle" style="color: var(--main-color-l);" title="Начато"></i>
+          {% elif l.progress == "NI" %} 
+            <i class="fas fa-circle-xmark" style="color: darkcyan;" title="Нет в Базе"></i>
           {% else %} 
-            <i class="far fa-circle" style="color: var(--main-color-ll);"></i>
+            <i class="far fa-circle" style="color: var(--main-color-ll);" title="Не начато"></i>
           {% endif %}
+          <p style="display: none;">{{l.progress}}</p>
         </td>
         <td class="lang">
           <a href='{{lang_url}}'>{{ l.name }}</a>

@@ -36,6 +36,7 @@ class Language(models.Model):
         DONE = "DN",    gtl("Закончен")
         CHECK = "CH",   gtl("Проверить")
         INPROG = "IP",  gtl("Начат") 
+        NOTIN = "NI",   gtl("Нет в Базе") 
         __empty__ =     gtl("Не начат")
 
     code = models.CharField(max_length=5, unique=True)
