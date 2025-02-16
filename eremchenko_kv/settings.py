@@ -3,19 +3,21 @@ Django settings for eremchenko_kv project.
 """
 import os
 from pathlib import Path
-from decouple import config
+from dotenv import dotenv_values
 
+
+secrets = dotenv_values()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = secrets.get('SECRET_KEY')
 
-DEBUG = config('DEBUG') == 'True'
+DEBUG = secrets.get('DEBUG') == 'True'
 
 if DEBUG:
     ALLOWED_HOSTS = ['127.0.0.1']
 else:
-    ALLOWED_HOSTS = [config('MAIN_HOST')]
+    ALLOWED_HOSTS = [secrets.get('MAIN_HOST')]
 
 
 # Application definition
@@ -69,11 +71,11 @@ WSGI_APPLICATION = 'eremchenko_kv.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
+        'NAME': secrets.get('DB_NAME'),
+        'USER': secrets.get('DB_USER'),
+        'PASSWORD': secrets.get('DB_PASSWORD'),
+        'HOST': secrets.get('DB_HOST'),
+        'PORT': secrets.get('DB_PORT'),
     }
 }
 

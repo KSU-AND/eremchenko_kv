@@ -8,11 +8,11 @@
     </thead>
     <tbody class="home">
       {% for tb in theory_blocks %}
-      {% url 'fpt.theory.view' as tb_url %}
+      {% url 'fpt.theory.show' id=tb.id as tb_url %}
       <tr onclick="toggleInfoInRow(this)">
         <td class="code">{{tb.id}}</td>
         <td class="title">
-          <a href='{{tb_url}}?id={{tb.id}}'>{{ tb.title }}</a>
+          <a href='{{tb_url}}'>{{ tb.title }}</a>
           <div class="dop-info">
             <p>{{ tb.outline|safe }}</p>
           </div>
@@ -21,7 +21,7 @@
           {{ tb.languages.count }}
           <div class="dop-info">
             {% for l in tb.languages.all %}
-            <div><a href="{% url 'fpt.language' %}?code={{l.code}}">{{l}}</a></div>
+            <div><a href="{% url 'fpt.language' code=l.code %}">{{l}}</a></div>
             {% endfor %}
           </div>
         </td>

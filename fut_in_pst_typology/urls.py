@@ -1,28 +1,25 @@
-from django.urls import path
+from django.urls import path, include
 
-from .views.home import home_page
-from .views.summary import summary_page
-from .views.theory import theory_page
-from .views.theory import theory_view_page, theory_edit_page, theory_create, theory_delete
-from .views.statistics import stats_page
-
-from .views.language import language_page
-from .views.family import family_page
-from .views.genus import genus_page
+from .views import home, summary, statistics, theory
+from .views import language, family, genus
 
 
-fpturlpatterns = [
-    path('', home_page, name="fpt"),
-    path('statistics/', stats_page, name="fpt.statistics"),
+theory_url_patterns = [
+    path('', theory.TheoryView.as_view(), name="fpt.theory"),
+    path('show/<int:id>', theory.TheoryView.Show.as_view(), name="fpt.theory.show"),
+    path('edit/<int:id>', theory.TheoryView.Edit.as_view(), name="fpt.theory.edit"),
+    path('delete/<int:id>', theory.TheoryView.Delete.as_view(), name="fpt.theory.delete"),
+    path('create/', theory.TheoryView.Create.as_view(), name="fpt.theory.create"),
+]
 
-    path('theory/', theory_page, name="fpt.theory"),
-    path('theory/view/', theory_view_page, name="fpt.theory.view"),
-    path('theory/edit/', theory_edit_page, name="fpt.theory.edit"),
-    path('theory/create/', theory_create, name="fpt.theory.create"),
-    path('theory/delete/', theory_delete, name="fpt.theory.delete"),
+fpt_url_patterns = [
+    path('', home.HomeView.as_view(), name="fpt"),
+    
+    path('summary/', summary.SummaryView.as_view(), name="fpt.summary"),
+    path('statistics/', statistics.StatisticsView.as_view(), name="fpt.statistics"),
+    path('theory/', include(theory_url_patterns)),
 
-    path('summary/', summary_page, name="fpt.summary"),
-    path('language/', language_page, name="fpt.language"),
-    path('family/', family_page, name="fpt.family"),
-    path('genus/', genus_page, name="fpt.genus"),
+    path('language/<str:code>', language.LanguageView.as_view(), name="fpt.language"),
+    path('family/<int:id>', family.FamilyView.as_view(), name="fpt.family"),
+    path('genus/<int:id>', genus.GenusView.as_view(), name="fpt.genus"),
 ]

@@ -4,7 +4,7 @@
         <ul>
         {% for i in languages %}
             <li>
-                <a href='{% url "fpt.language" %}?code={{i.code}}'>{{ i.name }}</a>
+                <a href='{% url "fpt.language" i.code %}'>{{ i.name }}</a>
             </li>
         {% endfor %}
         </ul>
@@ -15,7 +15,7 @@
         <ul>
         {% for i in genuses %}
             <li>
-                <a href='{% url "fpt.genus" %}?name={{i.name}}'>{{ i.name }}</a>
+                <a href='{% url "fpt.genus" i.id %}'>{{ i.name }}</a>
             </li>
         {% endfor %}
         </ul>
@@ -26,7 +26,7 @@
         <ul>
         {% for i in families %}
             <li>
-                <a href='{% url "fpt.family" %}?name={{i.name}}'>{{ i.name }}</a>
+                <a href='{% url "fpt.family" i.id %}'>{{ i.name }}</a>
             </li>
         {% endfor %}
         </ul>

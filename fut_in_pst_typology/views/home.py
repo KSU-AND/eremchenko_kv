@@ -1,5 +1,7 @@
+from django.views import View
 from django.shortcuts import render
 
 
-def home_page(request):
-    return render(request, "home.html")
+class HomeView(View):
+    def get(self, request):
+        return render(request, "home.html")

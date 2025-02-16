@@ -23,6 +23,6 @@
 {% block edit %}
   {% if not user.is_anonymous %}
   <a class="sidebutton editButton fas fa-pen-nib" 
-      href="{% url 'fpt.theory.edit' %}?id={{theory_block.id}}"></a>
+      href="{% url 'fpt.theory.edit' id=theory_block.id %}"></a>
   {% endif %}
 {% endblock %}

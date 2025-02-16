@@ -6,8 +6,8 @@
 
 
 {% block content %}
-  <h1 class="title" onclick="toggleInfoInH1(this)">
-    <p>Язык {{cur_lang.name}}</p>
+  <h1 class="title">
+    <p onclick="toggleInfoInH1(this.parentElement)">Язык {{cur_lang.name}}</p>
     <div class="dop-info">
       <table>
         <thead>
@@ -19,12 +19,12 @@
         <tbody>
           <tr>
             <td>
-              <a href='{% url "fpt.genus" %}?name={{cur_lang.genus.name}}'>
+              <a href='{% url "fpt.genus" cur_lang.genus.id %}'>
                 {{cur_lang.genus.name}}
               </a>
             </td>
             <td>
-              <a href='{% url "fpt.family" %}?name={{cur_lang.family.name}}'>
+              <a href='{% url "fpt.family" cur_lang.family.id %}'>
                 {{cur_lang.family.name}}
               </a>
             </td>
@@ -127,6 +127,9 @@
       <input type="hidden" name="theory_blocks">
     </form>
     <button class="fas fa-floppy-disk" onclick="postTheoryBlocks(this)"></button>
+  </div>
+  <div class="sidediv progressSelect">
+    <form method="post">{% csrf_token %}{{ forms.progress }}</form>
   </div>
   {% endif %}
 {% endblock %}

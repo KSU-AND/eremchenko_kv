@@ -2,16 +2,16 @@
 <hr>
 {% endif %}
 
-{% for theory_block in theory_blocks %}
+{% for tb in theory_blocks %}
 <div class="theoryBlock">
     <h6 onclick="theoryBlockToggle(this)">
     <i class="fas fa-brain"></i> 
-    {{theory_block.title}} 
+    {{tb.title}} 
     <i class="fas fa-eye-slash"></i>
     </h6>
-    <div class="theory outline"> {{theory_block.outline|safe}}
+    <div class="theory outline"> {{tb.outline|safe}}
     <div class="link" style="text-align: end;">
-        <a href="{% url 'fpt.theory.view' %}?id={{theory_block.id}}">
+        <a href="{% url 'fpt.theory.show' id=tb.id %}">
         Читать продолжение в источнике...
         </a>
     </div>

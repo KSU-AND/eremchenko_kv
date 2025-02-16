@@ -1,21 +1,22 @@
-from django.shortcuts import render
-from django.db.models import Count
+from django.views import View
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
 from ..models.genus import Genus
 from ..models.family import Family
 from ..models.language import Language
 
 
-def genus_page(request):
-    cur_genus_name = request.GET.get("name")
-    cur_genus_obj = Genus.objects.get(name=cur_genus_name)
-
-    context = {
-        "cur_genus": cur_genus_obj,
-        "languages": Language.objects.all(),
-        "genuses": Genus.objects.all(),
-        "families": Family.objects.all(),
-        "genus_list": Genus.objects.annotate(language_count=Count('language')),
-        "cur_genus_languages": Language.objects.filter(genus=cur_genus_obj.id),
-    }
-    return render(request, "genus.html", context)
+class GenusView(View):
+    def get(self, request, id):
+        current_genus = Genus.objects.get(id=id)
+        
+        context = {
+            "cur_genus": current_genus,
+            "cur_genus_languages": Language.objects.select_related("family").filter(genus=current_genus),
+            
+            "languages": Language.objects.order_by("name").all(),
+            "genuses": Genus.objects.order_by("name").all(),
+            "families": Family.objects.order_by("name").all(),
+        }
+        return render(request, "genus.html", context)

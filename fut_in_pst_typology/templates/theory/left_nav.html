@@ -2,9 +2,9 @@
     <div class="left-nav-container A">
         <div class="summary">Теоретические блоки</div>
         <ul>
-        {% for i in theory_blocks %}
+        {% for tb in theory_blocks %}
             <li>
-                <a href='{% url "fpt.theory.view" %}?id={{i.id}}'>{{ i.title }}</a>
+                <a href='{% url "fpt.theory.show" id=tb.id %}'>{{ tb.title }}</a>
             </li>
         {% endfor %}
         </ul>
