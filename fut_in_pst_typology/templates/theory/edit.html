@@ -11,7 +11,7 @@
 
 {% block content %}
   
-{% if not user.is_anonymous %}
+{% if user.is_superuser %}
   <h1 class="title">
     <div contenteditable="plaintext-only"  onblur="postTextFromEditor(this)">{{forms.title.title.value}}</div>
     <form method="post">
@@ -27,12 +27,12 @@
   {% include 'block/texteditor.html' with form=forms.text.text %}
 {% else %}
   <h1 class="title">403 Forbidden</h1 class="title">
-  <h6>Только зарегестрированные пользователи могут редактировать теоретические блоки.</h6>
+  <h6>Только администраторы могут редактировать теоретические блоки.</h6>
 {% endif %}
 {% endblock %}
 
 {% block edit %}
-  {% if not user.is_anonymous %}
+  {% if user.is_superuser %}
     <a class="sidebutton editButton fas fa-floppy-disk" 
         href="{% url 'fpt.theory.show' id=theory_block.id %}"></a>
     <a class="sidebutton deleteButton fas fa-trash" 
