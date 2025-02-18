@@ -6,15 +6,17 @@ from ..models.language import Language
 
 
 class StatisticsView(View):
-    languages = Language.objects.aggregate(
-        total=Count("id"),
-        ts=Count("id", filter=~Q(tense_system="")),
-        marks_all=Count("id", filter=~Q(fut="") & ~Q(pst="")),
-        marks_any=Count("id", filter=~Q(fut="") | ~Q(pst="")),
-        combs_all=Count("id", filter=~Q(aa="") & ~Q(am="") & ~Q(ma="") & ~Q(mm="")),
-        combs_any=Count("id", filter=~Q(aa="") | ~Q(am="") | ~Q(ma="") | ~Q(mm="")),
-        main_comment_all=Count("id", filter=Q(main_comment__contains="\n")),
-        main_comment_any=Count("id", filter=~Q(main_comment="")),
+    def __init__(self):
+        super().__init__()
+        self.languages = Language.objects.aggregate(
+            total=Count("id"),
+            ts=Count("id", filter=~Q(tense_system="")),
+            marks_all=Count("id", filter=~Q(fut="") & ~Q(pst="")),
+            marks_any=Count("id", filter=~Q(fut="") | ~Q(pst="")),
+            combs_all=Count("id", filter=~Q(aa="") & ~Q(am="") & ~Q(ma="") & ~Q(mm="")),
+            combs_any=Count("id", filter=~Q(aa="") | ~Q(am="") | ~Q(ma="") | ~Q(mm="")),
+            main_comment_all=Count("id", filter=Q(main_comment__contains="\n")),
+            main_comment_any=Count("id", filter=~Q(main_comment="")),
     )
 
     def get(self, request):

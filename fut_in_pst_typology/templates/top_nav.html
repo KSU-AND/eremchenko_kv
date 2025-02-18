@@ -21,4 +21,27 @@
             </a>
         </ul>
     </li>
+    <li>
+        <ul>
+        {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}">
+                <i class="fas fa-circle-user"></i> {{ user.username }}
+            </a>
+        </ul>
+        <ul>
+            <a href="{% url 'logout' %}">
+                <i class="fas fa-right-from-bracket"></i>
+            </a>
+        {% else %}
+            <a href="{% url 'registration' %}">
+                <i class="fas fa-address-card"></i> Регистрация
+            </a>
+        </ul>
+        <ul>
+            <a href="{% url 'login' %}">
+                <i class="fas fa-right-to-bracket"></i> Войти
+            </a>
+        {% endif %}
+        </ul>
+    </li>
 </nav>
