@@ -10,7 +10,7 @@ from ..forms.profile import ProfileForm
 class ProfileView(View):
     def __init__(self):
         super().__init__()
-        self.context = {'title': 'Вход', 'button': 'Войти'}
+        self.context = {'title': 'Личный кабинет', 'button': 'Сохранить'}
 
     def get(self, request):
         self.context['form'] = ProfileForm(instance=request.user)

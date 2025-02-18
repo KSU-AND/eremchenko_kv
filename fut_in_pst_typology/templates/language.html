@@ -49,31 +49,31 @@
     <tbody>
       <tr>
         <td class="ts">
-          {% if user.is_anonymous %} {{cur_lang.tense_system}}
+          {% if not user.is_superuser %} {{cur_lang.tense_system}}
           {% else %}<form method="post">{% csrf_token %}{{ forms.ts }}</form>{% endif %}
         </td>
         <td>
-          {% if user.is_anonymous %} {{cur_lang.fut}}
+          {% if not user.is_superuser %} {{cur_lang.fut}}
           {% else %}<form method="post">{% csrf_token %}{{ forms.fut }}</form>{% endif %}
         </td>
         <td>
-          {% if user.is_anonymous %} {{cur_lang.pst}}
+          {% if not user.is_superuser %} {{cur_lang.pst}}
           {% else %}<form method="post">{% csrf_token %}{{ forms.pst }}</form>{% endif %}
         </td>
         <td>
-          {% if user.is_anonymous %} {{cur_lang.mm}}
+          {% if not user.is_superuser %} {{cur_lang.mm}}
           {% else %}<form method="post">{% csrf_token %}{{ forms.mm }}</form>{% endif %}
         </td>
         <td>
-          {% if user.is_anonymous %} {{cur_lang.am}}
+          {% if not user.is_superuser %} {{cur_lang.am}}
           {% else %}<form method="post">{% csrf_token %}{{ forms.am }}</form>{% endif %}
         </td>
         <td>
-          {% if user.is_anonymous %} {{cur_lang.ma}}
+          {% if not user.is_superuser %} {{cur_lang.ma}}
           {% else %}<form method="post">{% csrf_token %}{{ forms.ma }}</form>{% endif %}
         </td>
         <td>
-          {% if user.is_anonymous %} {{cur_lang.aa}}
+          {% if not user.is_superuser %} {{cur_lang.aa}}
           {% else %}<form method="post">{% csrf_token %}{{ forms.aa }}</form>{% endif %}
         </td>
       </tr>
@@ -82,7 +82,7 @@
 
   <div class="main-comment-div">
     <h6><i class="fas fa-terminal"></i> главный</h6>
-    {% if not user.is_anonymous %}
+    {% if user.is_superuser %}
     <form method="post" id="main_comment">{% csrf_token %}{{ forms.main_comment }}</form>
     {% else %}
     <div>
@@ -103,7 +103,7 @@
     {% endfor %}
   </div>
 
-  {% if not user.is_anonymous %}
+  {% if user.is_superuser or not perms.accounts.black_list and not user.is_anonymous %}
   <form method="POST" id="add_comment_form">
     {% csrf_token %}
     <input type="hidden" name="add_comment" />
@@ -116,7 +116,7 @@
 
 
 {% block edit %}
-  {% if not user.is_anonymous %}
+  {% if user.is_superuser %}
   <a class="sidebutton addTheoryButton fas fa-brain" onclick="toggleTheoryBlocksOverlay()"></a>
   <div id="theoryBlocksBack" onclick="toggleTheoryBlocksOverlay()"></div>
   <div id="theoryBlocksDiv">
