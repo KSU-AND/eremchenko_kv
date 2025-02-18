@@ -7,7 +7,13 @@ class ProfileForm(UserChangeForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'first_name', 'last_name')
+        fields = ('username', 'first_name', 'last_name', 'email', 'telegram')
+        labels = {'username': 'Никнейм*',
+                  'first_name': 'Имя',
+                  'last_name': 'Фамилия',
+                  'email': 'Почта',
+                  'telegram': 'Телеграм',
+                  }
 
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
