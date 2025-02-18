@@ -6,12 +6,14 @@ from eremchenko_kv import settings
 from eremchenko_kv.views.index import index_page
 
 from fut_in_pst_typology.urls import fpt_url_patterns
+from accounts.urls import accounts_url_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index_page),
     
     path('fut-in-pst-typology/', include(fpt_url_patterns)),
+    path('accounts/', include(accounts_url_patterns)),
 ]
 
 if settings.DEBUG:

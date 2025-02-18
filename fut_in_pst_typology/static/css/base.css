@@ -75,7 +75,9 @@ a:hover {
 
 /* TOP NAVIGATION BAR */
 
-nav.top-nav {    
+nav.top-nav {
+    display: flex;
+    justify-content: space-between;
     background-color: var(--main-color-d);
     padding: 16px;
     color: white;
@@ -318,4 +320,37 @@ table.home .dop-info {
 @keyframes comment-animation {
     from { border-color: var(--secondery-color-dd); }
     to { border-color: var(--green-color-dd); }
+}
+
+form.accounts {
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    p {
+        margin: 8px 0;
+        label {
+            margin-right: 10px;
+            width: 45%;
+            display: inline-block;
+            text-align: right;
+        }
+    }
+    button[type="submit"] {
+        margin: 16px 0px;
+        background-color: var(--secondery-color-d);
+        color: var(--main-text-color);
+        padding: 8px;
+        border: 2px solid var(--main-color-ll);
+        border-radius: 8px;
+        cursor: pointer;
+        width: 100%;
+        height: 70px;
+        font-size: large;
+    }
+    button[type="submit"]:hover {
+        border: 2px solid var(--main-text-color-ll);
+        background-color: var(--secondery-color-dd);
+    }
 }

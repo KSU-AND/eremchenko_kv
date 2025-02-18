@@ -1,7 +1,9 @@
 <div class="one-comment-div">
-  <h6><i class="fas fa-terminal"></i> от admin</h6>
+  <h6><i class="fas fa-terminal"></i> 
+    от {{ comment.c.user.username }} ({{ comment.c.user.first_name }} {{ comment.c.user.last_name }}) 
+  </h6>
 
-  {% if not user.is_anonymous %}
+  {% if user.is_superuser or not perms.accounts.black_list and comment.c.user == user %}
   <form method="post" id="{{comment.form.comment.html_name}}" class="commentForm">
     {{ comment.form.comment }}
     <input type="hidden" name="comment_was_edited" />
@@ -13,9 +15,9 @@
 
   <div class="images-div">
     {% for img in comment.images %}
-      {% include 'block/image.html' %}
+      {% include 'block/image.html' with img_user=comment.c.user %}
     {% endfor %}
-    {% if not user.is_anonymous %}
+    {% if user.is_superuser or not perms.accounts.black_list and comment.c.user == user %}
     <form method="post" class="add-image-form" id="{{comment.form.comment.html_name}}-image">
       <input type="file" accept="image/*" name="{{comment.form.comment.html_name}}">
       <input type="hidden" name="add_image" />

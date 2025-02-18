@@ -1,6 +1,6 @@
 <img src="{{img.image.url}}" class="imageBase" id="image_{{img.id}}" onclick="turnOnImageShow(this)">
 <div class="modalContainer" onclick="turnOffImageShow(this)">
-    {% if not user.is_anonymous %}
+    {% if user.is_superuser or not perms.accounts.black_list and img_user == user %}
     <button class="deleteImageButton fas fa-trash" onclick="deleteImage(this)"></button>
     <form method="post">{% csrf_token %}<input type="hidden" name="delete_image" value="{{img.id}}"></form>
     {% endif %}
