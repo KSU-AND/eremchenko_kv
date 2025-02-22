@@ -14,15 +14,10 @@
     <link rel="stylesheet" href="{% static 'css/aside.css' %}">
     <link rel="stylesheet" href="{% static 'css/imageShow.css' %}">
     <link rel="stylesheet" href="{% static 'css/progressBar.css' %}">
-
+    
     <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/regular.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/solid.min.css' %}">
-
-    <script src="{% static 'js/dop-info.js' %}"></script>
-    <script src="{% static 'js/lang.js' %}"></script>
-    <script src="{% static 'js/nav.js' %}"></script>
-    <script src="{% static 'js/imageShow.js' %}"></script>
 </head>
 
 <body>
@@ -62,5 +57,9 @@
     {% block scripts %}
     <script></script>
     {% endblock %}
+    <script src="{% static 'js/dop-info.js' %}"></script>
+    <script src="{% static 'js/lang.js' %}"></script>
+    <script src="{% static 'js/nav.js' %}"></script>
+    <script src="{% static 'js/imageShow.js' %}"></script> 
 </body>
 </html>
