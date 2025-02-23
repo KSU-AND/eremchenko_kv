@@ -1,0 +1,17 @@
+{% if l.area %}<a href="{% url 'fpt.area' l.area.id %}">{% endif %}
+
+{% if l.area.code == "AmN" or l.area.code == "AmC" or l.area.code == "AmS" %}
+<i class="fas fa-earth-america" style="color: darkcyan;"></i>
+{% elif l.area.code == "AFR" %} 
+<i class="fas fa-earth-africa" style="color: black;"></i>
+{% elif l.area.code == "EU" %} 
+<i class="fas fa-earth-europe" style="color: darksalmon;"></i>
+{% elif l.area.code == "AsW" or l.area.code == "AsC" or l.area.code == "AsE" or l.area.code == "AsSE" %}
+<i class="fas fa-earth-asia" style="color: darkorange;"></i>
+{% elif l.area.code == "Ocean" or l.area.code == "A&nG" %}
+<i class="fas fa-earth-oceania" style="color: darkorchid;"></i>
+{% else %} 
+<i class="fas fa-compass alert"></i>
+{% endif %}
+
+{% if l.area %}{{l.area.code}}</a>{% endif %}

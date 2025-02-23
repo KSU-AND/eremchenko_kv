@@ -170,10 +170,11 @@ table.home {
             justify-content: space-between;
         }
     }
+    .area {width: 10%;}
     .ts {width: 10%;}
     .tm {width: 7%;}
-    .tm:nth-child(even) {border-left: 3px solid var(--main-color);}
-    .tm:nth-child(odd){border-right: 3px solid var(--main-color);}
+    .tm:nth-child(even) {border-right: 3px solid var(--main-color);}
+    .tm:nth-child(odd){border-left: 3px solid var(--main-color);}
     .comb {width: 10%;}
     .title {
         text-align: left;

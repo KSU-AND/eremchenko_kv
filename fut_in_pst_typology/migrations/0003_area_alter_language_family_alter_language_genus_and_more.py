@@ -15,6 +15,7 @@ class Migration(migrations.Migration):
             name='Area',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('code', models.CharField(max_length=5, unique=True)),
                 ('name', models.CharField(max_length=50, unique=True)),
             ],
             options={

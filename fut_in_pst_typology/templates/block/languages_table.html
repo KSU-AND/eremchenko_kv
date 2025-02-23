@@ -3,6 +3,7 @@
       <tr>
         <th class="code">{% include "block/sort_button.html" %}ST</th>
         <th class="lang">{% include "block/sort_button.html" with az=1 %}Язык</th>
+        <th class="area">{% include "block/sort_button.html" %}Ареал</th>
         <th class="ts">{% include "block/sort_button.html" %}Система времён</th>
         <th class="tm">{% include "block/sort_button.html" %}FUT</th>
         <th class="tm">{% include "block/sort_button.html" %}PST</th>
@@ -35,7 +36,6 @@
             <a href='{{lang_url}}'>{{ l.name }}</a>
             {% if not l.genus %} <i class="fas fa-campground alert"></i>{% endif %}
             {% if not l.family %} <i class="fas fa-people-roof alert"></i>{% endif %}
-            {% if not l.area %} <i class="fas fa-compass alert"></i>{% endif %}
           </div>
           <div class="dop-info">
             {% if not only_family %}
@@ -49,6 +49,7 @@
             {% endif %}
           </div>
         </td>
+        <td class="area">{% include "block/area_inline.html" %}</td>
         <td class="ts">{{l.tense_system}}</td>
         <td class="tm">{{l.fut}}</td>
         <td class="tm">{{l.pst}}</td>

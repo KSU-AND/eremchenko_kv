@@ -18,8 +18,9 @@ def fill_families():
 def fill_areas():
     with open("fut_in_pst_typology/management/csvs/areas.csv", "r", encoding="utf-8") as f:
         for line in f:
+            code, name = line.strip().split(",")
             try:
-                Area.objects.create(name=line.strip())
+                Area.objects.create(code=code, name=name,)
             except IntegrityError:
                 pass
 
