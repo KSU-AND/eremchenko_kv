@@ -23,6 +23,7 @@ class Language(models.Model):
         m = "Mrph",     gtl("Морфологич.")
         a = "Anlt",     gtl("Аналитич.")
         b = "M + A",    gtl("Возможны оба") 
+        c = "Clitic",   gtl("Клитика")
         n = "---",      gtl("Ни одного")
         __empty__ =     gtl("(Unknown)")
 
@@ -48,8 +49,8 @@ class Language(models.Model):
     family = models.ForeignKey(Family, on_delete=models.CASCADE, null=True)
     
     tense_system = models.CharField(max_length=15, choices=TenseSystem, blank=True)
-    fut = models.CharField(max_length=5, choices=TenseMarker, blank=True)
-    pst = models.CharField(max_length=5, choices=TenseMarker, blank=True)
+    fut = models.CharField(max_length=6, choices=TenseMarker, blank=True)
+    pst = models.CharField(max_length=6, choices=TenseMarker, blank=True)
 
     mm = models.CharField(max_length=10, choices=CombOptionState, blank=True)
     am = models.CharField(max_length=10, choices=CombOptionState, blank=True)
