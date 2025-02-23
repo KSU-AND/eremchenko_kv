@@ -4,21 +4,34 @@
 
 
 {% block content %}
-
 <h1 class="title">Статистические данные</h1>
-
 <h2>Прогресс анализа</h2>
-
-<h5>Временная система</h5>
-{% include 'block/progress_bar.html' with param=ts %}
-
-<h5>Временные показатели</h5>
-{% include 'block/progress_bar.html' with param=marks %}
-
-<h5>Комбинации показателей</h5>
-{% include 'block/progress_bar.html' with param=combs %}
-
-<h5>Главный комментарий</h5>
-{% include 'block/progress_bar.html' with param=main_comment %}
-
+<div style="z-index: -1; height: 35vw; display: flex; justify-content: center;">
+    <canvas id="progressChart"></canvas>
+</div>
 {% endblock content %}
+
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('progressChart');
+    const data = {
+        labels: ['Сделано', 'Проверить!', 'Нет в Базе', 'В процессе', 'Не начато'],
+        datasets: [{
+            label: 'Кол-во языков',
+            data: [{{DN}}, {{CH}}, {{NI}}, {{IP}}, {{NL}}],
+            backgroundColor: [ '#626A37', '#A52A2A', '#008B8B', '#B4B68F', '#E7E5D2']
+        }]
+    };
+
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: data,
+        options: {plugins: {legend: {
+            position: 'right', 
+            reverse: true, 
+            labels: {padding: 20, font: {size: 16}}}}}
+    });
+</script>
+{% endblock %}
