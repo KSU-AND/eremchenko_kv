@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as gtl
 
-from .family import Family
+from .area import Area
 from .genus import Genus
+from .family import Family
 from .theory import TheoryBlock
 
 class Language(models.Model):
@@ -42,8 +43,9 @@ class Language(models.Model):
     code = models.CharField(max_length=5, unique=True)
     name = models.CharField(max_length=50)
 
-    genus = models.ForeignKey(Genus, on_delete=models.CASCADE)
-    family = models.ForeignKey(Family, on_delete=models.CASCADE)
+    area = models.ForeignKey(Area, on_delete=models.CASCADE, null=True)
+    genus = models.ForeignKey(Genus, on_delete=models.CASCADE, null=True)
+    family = models.ForeignKey(Family, on_delete=models.CASCADE, null=True)
     
     tense_system = models.CharField(max_length=15, choices=TenseSystem, blank=True)
     fut = models.CharField(max_length=5, choices=TenseMarker, blank=True)
@@ -57,7 +59,7 @@ class Language(models.Model):
     main_comment = models.TextField(blank=True)
     progress = models.CharField(max_length=2, choices=Status, blank=True)
     
-    theory_blocks = models.ManyToManyField(TheoryBlock, related_name="languages")
+    theory_blocks = models.ManyToManyField(TheoryBlock, related_name="languages", blank=True)
 
     def __str__(self) -> str:
         return self.name

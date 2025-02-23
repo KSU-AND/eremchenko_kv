@@ -39,6 +39,9 @@
             {% if not only_genus %}
                 <p><i class="fa-solid fa-people-roof"></i> {{ l.family }}</p>
             {% endif %}
+            {% if not only_area %}
+                <p><i class="fa-solid fa-compass"></i> {{ l.area }}</p>
+            {% endif %}
           </div>
         </td>
         <td class="ts">{{l.tense_system}}</td>

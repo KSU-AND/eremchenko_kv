@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from ..models.language import Language
+from ..models.area import Area
 from ..models.genus import Genus
 from ..models.family import Family
 from ..models.comment import Comment
@@ -19,13 +20,14 @@ from ..forms.progress_form import ProgressForm
 class LanguageView(View):
     def get(self, request, code):
 
-        current_language = Language.objects.get(code=code)
+        current_language = Language.objects.select_related("area", "genus", "family").get(code=code)
         comments = Comment.objects.filter(lang=current_language).order_by("id")
 
         context = {
             "user": request.user,
             "cur_lang": current_language,
             "languages": Language.objects.order_by("name").all(),
+            "areas": Area.objects.order_by("name").all(),
             "genuses": Genus.objects.order_by("name").all(),
             "families": Family.objects.order_by("name").all(),
             "theory_blocks": current_language.theory_blocks.all(),
