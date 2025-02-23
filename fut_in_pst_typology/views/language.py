@@ -57,7 +57,10 @@ class LanguageView(View):
 
         if request.POST.get("area") is not None:
             area_form = AreaForm(request.POST, instance=current_language)
-            area_form.save()
+            if area_form.is_valid(): area_form.save()
+            else:
+                current_language.area = None
+                current_language.save()
             return HttpResponse(status=200)
         if request.POST.get("pst") is not None:
             pst_form = PstForm(request.POST, instance=current_language)
