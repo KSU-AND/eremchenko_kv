@@ -72,6 +72,8 @@ a:hover {
     color: white;
 }
 
+.alert {color: brown;}
+.accent {color: darkcyan;}
 
 /* TOP NAVIGATION BAR */
 
@@ -161,6 +163,12 @@ table.home {
         text-align: left;
         width: 15%;
         padding: 8px 12px;
+        i {padding: 4px;}
+        .main-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
     }
     .ts {width: 10%;}
     .tm {width: 7%;}
