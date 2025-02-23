@@ -30,9 +30,13 @@
               {% else %} {{cur_lang.family}} {% endif %}
             </td>
             <td>
-              {% if cur_lang.area %}
-              <a href='{% url "fpt.area" cur_lang.area.id %}'>{{cur_lang.area}}</a>
-              {% else %} {{cur_lang.area}} {% endif %}
+              {% if not user.is_superuser %}
+                {% if cur_lang.area %}<a href='{% url "fpt.area" cur_lang.area.id %}'>{{cur_lang.area}}</a>
+                {% else %}<i class="fas fa-compass" style="color: brown;"></i>
+                {% endif %}
+              {% else %}
+                <form method="post">{% csrf_token %}{{ forms.area }}</form> 
+              {% endif %}
             </td>
           </tr>
         </tbody>

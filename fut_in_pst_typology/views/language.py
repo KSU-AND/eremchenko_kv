@@ -8,6 +8,7 @@ from ..models.genus import Genus
 from ..models.family import Family
 from ..models.comment import Comment
 from ..models.comment_image import CommentImage
+from ..forms.area_form import AreaForm
 from ..forms.tense_marker_form import FutForm, PstForm
 from ..forms.tense_system_form import TenseSystemForm
 from ..forms.combinations_form import MMForm, MAForm, AMForm, AAForm
@@ -32,6 +33,7 @@ class LanguageView(View):
             "families": Family.objects.order_by("name").all(),
             "theory_blocks": current_language.theory_blocks.all(),
             "forms":{
+                "area": AreaForm(instance=current_language),
                 "ts": TenseSystemForm(instance=current_language),
                 "fut": FutForm(instance=current_language),
                 "pst": PstForm(instance=current_language),
@@ -53,6 +55,10 @@ class LanguageView(View):
     def post(self, request, code):
         current_language = Language.objects.get(code=code)
 
+        if request.POST.get("area") is not None:
+            area_form = AreaForm(request.POST, instance=current_language)
+            area_form.save()
+            return HttpResponse(status=200)
         if request.POST.get("pst") is not None:
             pst_form = PstForm(request.POST, instance=current_language)
             pst_form.save()

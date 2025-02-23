@@ -20,18 +20,23 @@
           {% if l.progress == "DN" %} 
             <i class="fas fa-circle-check" style="color: var(--main-color);" title="Сделано"></i>
           {% elif l.progress == "CH" %} 
-            <i class="fas fa-circle-exclamation" style="color: brown;" title="Проверить!"></i>
+            <i class="fas fa-circle-exclamation alert" title="Проверить!"></i>
           {% elif l.progress == "IP" %} 
             <i class="fas fa-circle" style="color: var(--main-color-l);" title="Начато"></i>
           {% elif l.progress == "NI" %} 
-            <i class="fas fa-circle-xmark" style="color: darkcyan;" title="Нет в Базе"></i>
+            <i class="fas fa-circle-xmark accent" title="Нет в Базе"></i>
           {% else %} 
             <i class="far fa-circle" style="color: var(--main-color-ll);" title="Не начато"></i>
           {% endif %}
           <p style="display: none;">{{l.progress}}</p>
         </td>
         <td class="lang">
-          <a href='{{lang_url}}'>{{ l.name }}</a>
+          <div class="main-info">
+            <a href='{{lang_url}}'>{{ l.name }}</a>
+            {% if not l.genus %} <i class="fas fa-campground alert"></i>{% endif %}
+            {% if not l.family %} <i class="fas fa-people-roof alert"></i>{% endif %}
+            {% if not l.area %} <i class="fas fa-compass alert"></i>{% endif %}
+          </div>
           <div class="dop-info">
             {% if not only_family %}
                 <p><i class="fa-solid fa-campground"></i> {{ l.genus }}</p>
