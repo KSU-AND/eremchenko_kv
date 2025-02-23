@@ -28,10 +28,11 @@ aside.active {
     display: grid;
     row-gap: var(--padding);
     height: calc(100% - var(--padding) * 2);
-    grid-template-areas: "A X" "B X" "C X";
+    grid-template-areas: "A X" "B X" "C X" "D X";
     .A{grid-area: A;}
     .B{grid-area: B;}
     .C{grid-area: C;}
+    .D{grid-area: D;}
     .X{grid-area: X;}
     
 }

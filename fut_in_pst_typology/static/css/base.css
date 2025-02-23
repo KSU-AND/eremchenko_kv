@@ -72,6 +72,8 @@ a:hover {
     color: white;
 }
 
+.alert {color: brown;}
+.accent {color: darkcyan;}
 
 /* TOP NAVIGATION BAR */
 
@@ -161,11 +163,18 @@ table.home {
         text-align: left;
         width: 15%;
         padding: 8px 12px;
+        i {padding: 4px;}
+        .main-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
     }
+    .area {width: 10%;}
     .ts {width: 10%;}
     .tm {width: 7%;}
-    .tm:nth-child(even) {border-left: 3px solid var(--main-color);}
-    .tm:nth-child(odd){border-right: 3px solid var(--main-color);}
+    .tm:nth-child(even) {border-right: 3px solid var(--main-color);}
+    .tm:nth-child(odd){border-left: 3px solid var(--main-color);}
     .comb {width: 10%;}
     .title {
         text-align: left;

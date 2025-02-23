@@ -7,17 +7,17 @@ from ..models.family import Family
 from ..models.language import Language
 
 
-class GenusView(View):
+class AreaView(View):
     def get(self, request, id):
-        current_genus = Genus.objects.get(id=id)
+        current_area = Area.objects.get(id=id)
         
         context = {
-            "cur_genus": current_genus,
-            "cur_genus_languages": Language.objects.select_related("area", "family").filter(genus=current_genus),
+            "cur_area": current_area,
+            "cur_area_languages": Language.objects.select_related("family", "genus").filter(area=current_area),
             
             "languages": Language.objects.order_by("name").all(),
             "areas": Area.objects.order_by("name").all(),
             "genuses": Genus.objects.order_by("name").all(),
             "families": Family.objects.order_by("name").all(),
         }
-        return render(request, "genus.html", context)
+        return render(request, "area.html", context)

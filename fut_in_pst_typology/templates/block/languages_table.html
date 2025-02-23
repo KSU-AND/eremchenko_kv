@@ -3,6 +3,7 @@
       <tr>
         <th class="code">{% include "block/sort_button.html" %}ST</th>
         <th class="lang">{% include "block/sort_button.html" with az=1 %}Язык</th>
+        <th class="area">{% include "block/sort_button.html" %}Ареал</th>
         <th class="ts">{% include "block/sort_button.html" %}Система времён</th>
         <th class="tm">{% include "block/sort_button.html" %}FUT</th>
         <th class="tm">{% include "block/sort_button.html" %}PST</th>
@@ -20,18 +21,22 @@
           {% if l.progress == "DN" %} 
             <i class="fas fa-circle-check" style="color: var(--main-color);" title="Сделано"></i>
           {% elif l.progress == "CH" %} 
-            <i class="fas fa-circle-exclamation" style="color: brown;" title="Проверить!"></i>
+            <i class="fas fa-circle-exclamation alert" title="Проверить!"></i>
           {% elif l.progress == "IP" %} 
             <i class="fas fa-circle" style="color: var(--main-color-l);" title="Начато"></i>
           {% elif l.progress == "NI" %} 
-            <i class="fas fa-circle-xmark" style="color: darkcyan;" title="Нет в Базе"></i>
+            <i class="fas fa-circle-xmark accent" title="Нет в Базе"></i>
           {% else %} 
             <i class="far fa-circle" style="color: var(--main-color-ll);" title="Не начато"></i>
           {% endif %}
           <p style="display: none;">{{l.progress}}</p>
         </td>
         <td class="lang">
-          <a href='{{lang_url}}'>{{ l.name }}</a>
+          <div class="main-info">
+            <a href='{{lang_url}}'>{{ l.name }}</a>
+            {% if not l.genus %} <i class="fas fa-campground alert"></i>{% endif %}
+            {% if not l.family %} <i class="fas fa-people-roof alert"></i>{% endif %}
+          </div>
           <div class="dop-info">
             {% if not only_family %}
                 <p><i class="fa-solid fa-campground"></i> {{ l.genus }}</p>
@@ -39,8 +44,12 @@
             {% if not only_genus %}
                 <p><i class="fa-solid fa-people-roof"></i> {{ l.family }}</p>
             {% endif %}
+            {% if not only_area %}
+                <p><i class="fa-solid fa-compass"></i> {{ l.area }}</p>
+            {% endif %}
           </div>
         </td>
+        <td class="area">{% include "block/area_inline.html" %}</td>
         <td class="ts">{{l.tense_system}}</td>
         <td class="tm">{{l.fut}}</td>
         <td class="tm">{{l.pst}}</td>

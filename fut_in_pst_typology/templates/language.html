@@ -12,21 +12,31 @@
       <table>
         <thead>
           <tr>
-            <th>Род</th>
-            <th>Семья</th>
+            <th style="width: 33%;">Род</th>
+            <th style="width: 33%;">Семья</th>
+            <th style="width: 33%;">Макро-ареал</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>
-              <a href='{% url "fpt.genus" cur_lang.genus.id %}'>
-                {{cur_lang.genus.name}}
-              </a>
+              {% if cur_lang.genus %}
+              <a href='{% url "fpt.genus" cur_lang.genus.id %}'>{{cur_lang.genus}}</a>
+              {% else %} {{cur_lang.genus}} {% endif %}
             </td>
             <td>
-              <a href='{% url "fpt.family" cur_lang.family.id %}'>
-                {{cur_lang.family.name}}
-              </a>
+              {% if cur_lang.family %}
+              <a href='{% url "fpt.family" cur_lang.family.id %}'>{{cur_lang.family}}</a>
+              {% else %} {{cur_lang.family}} {% endif %}
+            </td>
+            <td>
+              {% if not user.is_superuser %}
+                {% if cur_lang.area %}<a href='{% url "fpt.area" cur_lang.area.id %}'>{{cur_lang.area}}</a>
+                {% else %}<i class="fas fa-compass" style="color: brown;"></i>
+                {% endif %}
+              {% else %}
+                <form method="post">{% csrf_token %}{{ forms.area }}</form> 
+              {% endif %}
             </td>
           </tr>
         </tbody>

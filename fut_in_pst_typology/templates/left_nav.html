@@ -31,4 +31,15 @@
         {% endfor %}
         </ul>
     </div>
+        
+    <div class="left-nav-container D">
+        <div class="summary"><i class="fas fa-compass"></i> Ареалы</div>
+        <ul>
+        {% for i in areas %}
+            <li>
+                <a href='{% url "fpt.area" i.id %}'>{{ i.name }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
 </nav>

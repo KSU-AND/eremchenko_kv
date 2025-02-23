@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {% if cur_area %} {{ cur_area }} {% else %} Макро-ареал? {% endif %}
+{% endblock %}
+
+{% block content%}
+  <h1 class="title">
+    Макро-ареал {{cur_area.name}}
+  </h1>
+
+  {% include 'block/languages_table.html' with languages=cur_area_languages only_area=1 %}
+
+{% endblock %}

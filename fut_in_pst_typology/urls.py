@@ -1,7 +1,7 @@
 from django.urls import path, include
 
 from .views import home, summary, statistics, theory
-from .views import language, family, genus
+from .views import language, family, genus, area
 
 
 theory_url_patterns = [
@@ -20,6 +20,7 @@ fpt_url_patterns = [
     path('theory/', include(theory_url_patterns)),
 
     path('language/<str:code>', language.LanguageView.as_view(), name="fpt.language"),
-    path('family/<int:id>', family.FamilyView.as_view(), name="fpt.family"),
+    path('area/<int:id>', area.AreaView.as_view(), name="fpt.area"),
     path('genus/<int:id>', genus.GenusView.as_view(), name="fpt.genus"),
+    path('family/<int:id>', family.FamilyView.as_view(), name="fpt.family"),
 ]
