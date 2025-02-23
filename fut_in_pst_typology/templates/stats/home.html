@@ -28,7 +28,10 @@
     new Chart(ctx, {
         type: 'doughnut',
         data: data,
-        options: {plugins: {legend: {position: 'left', reverse: true}}}
+        options: {plugins: {legend: {
+            position: 'right', 
+            reverse: true, 
+            labels: {padding: 20, font: {size: 16}}}}}
     });
 </script>
 {% endblock %}
