@@ -8,6 +8,7 @@ from ..models.genus import Genus
 from ..models.family import Family
 from ..models.comment import Comment
 from ..models.comment_image import CommentImage
+from ..models.source import Source
 from ..forms.area_form import AreaForm
 from ..forms.tense_marker_form import FutForm, PstForm
 from ..forms.tense_system_form import TenseSystemForm
@@ -16,6 +17,7 @@ from ..forms.main_comment_form import MainCommentForm
 from ..forms.comment_form import CommentForm
 from ..forms.theory_form import TheoryBlocksForm
 from ..forms.progress_form import ProgressForm
+from ..forms.source_form import SourceForm
 
 
 class LanguageView(View):
@@ -23,6 +25,7 @@ class LanguageView(View):
 
         current_language = Language.objects.select_related("area", "genus", "family").get(code=code)
         comments = Comment.objects.filter(lang=current_language).order_by("id")
+        sources = Source.objects.filter(lang=current_language).order_by("source")
 
         context = {
             "user": request.user,
@@ -47,7 +50,10 @@ class LanguageView(View):
                               "form": CommentForm(instance=c, prefix=str(c.id)),
                               "images": CommentImage.objects.filter(comment=c),
                               } for c in comments],
-                "theory_blocks": TheoryBlocksForm(instance=current_language)
+                "theory_blocks": TheoryBlocksForm(instance=current_language),
+                "sources": [{"source": s,
+                             "form": SourceForm(instance=s, prefix=str(s.id))
+                            } for s in  sources],
             },
         }
         return render(request, "language.html", context)
@@ -104,8 +110,7 @@ class LanguageView(View):
             return render(request, "comment_form.html", {"user": request.user,
                                                          "comment":{"c": new_comment,
                                                                     "form": new_comment_form,
-                                                                    "images": []}
-                                                                    })
+                                                                    "images": []}})
         if request.POST.get("add_image") is not None:
             if request.FILES:
                 comment_ids = [k for k in request.FILES.keys() if k.endswith("comment")]
@@ -137,6 +142,23 @@ class LanguageView(View):
                 form = CommentForm(request.POST, prefix=comment_id, instance=comment)
                 form.save() if form.is_valid() else comment.delete()
             return HttpResponse(status=200)
+        
+        if request.POST.get("add_source") is not None:
+            new_source = Source.objects.create(lang=current_language)
+            new_source_form = SourceForm(instance=new_source, prefix=str(new_source.id))
+            return render(request, 
+                          "block/source_form.html", 
+                          {"user": request.user, 
+                           "source": {"form": new_source_form}})
+        if request.POST.get("source_was_edited") is not None:
+            source_ids = [k.split('-')[0] for k in request.POST.keys() 
+                           if not k.startswith("csrf") and k.endswith("source")]
+            for source_id in source_ids:
+                source = Source.objects.get(id=int(source_id))
+                form = SourceForm(request.POST, prefix=source_id, instance=source)
+                form.save() if form.is_valid() else source.delete()
+            return HttpResponse(status=200)
+        
         if request.POST.get("theory_blocks") is not None:
             post = dict(request.POST)
             post["theory_blocks"] = [i for i in post["theory_blocks"] if i]

@@ -1,0 +1,9 @@
+{% if user.is_superuser or not perms.accounts.black_list and comment.c.user == user %}
+<form method="post">
+    {{ source.form.source }}
+    <input type="hidden" name="source_was_edited">
+    {% csrf_token %}
+</form>
+{% else %}
+  <div><pre class="comment source">{{source.source}}</pre></div>
+{% endif %}

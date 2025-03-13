@@ -13,7 +13,12 @@ comment_widget = Textarea(attrs={"class": "comment",
                                  "placeholder": "Комментарий",
                                  "spellcheck": "false",
                                  "rows":""})
-textarea_hidden_widget = Textarea(attrs={"name": "theory",
-                                     "style": "display: none;"})
+textarea_hidden_widget = Textarea(attrs={"name": "theory", 
+                                         "style": "display: none;"})
+source_widget = Textarea(attrs={"class": "comment source",
+                                 "onblur": "postSource(this);",
+                                "placeholder": "Ссылка на грамматику",
+                                "spellcheck": "false",
+                                "rows": "1"})
 
 checkbox_select_widget = CheckboxSelectMultiple(attrs={"class": "checkBoxed",}) 

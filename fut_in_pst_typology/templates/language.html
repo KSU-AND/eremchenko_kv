@@ -112,6 +112,8 @@
     {% include 'comment_form.html' %}
     {% endfor %}
   </div>
+  
+  {% include 'block/sources.html' %}
 
   {% if user.is_superuser or not perms.accounts.black_list and not user.is_anonymous %}
   <form method="POST" id="add_comment_form">

@@ -1,0 +1,17 @@
+<div id="sources">
+    <h6><i class="fas fa-book"></i> Ссылки на грамматику</h6>
+    
+    {% for source in forms.sources %}
+    {% include 'block/source_form.html' %}
+    {% endfor %}
+</div>
+    
+{% if user.is_superuser %}
+<form method="POST" id="add_source_form">
+    {% csrf_token %}
+    <input type="hidden" name="add_source" />
+    <div>
+        <button type="button" class="add-source-button" onclick="postAddSource(this)">+</button>
+    </div>
+</form>
+{% endif %}

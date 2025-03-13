@@ -235,6 +235,11 @@ table.home .dop-info {
     outline: none;
     background-color: #fff;
 }
+.source {
+    min-height: 20px;
+    padding: 5px 15px 8px;
+    border-color: darkcyan;
+}
 
 .add-comment-button {
     margin: 16px 0px;
@@ -252,6 +257,22 @@ table.home .dop-info {
 .add-comment-button:hover {
     border: 2px solid var(--main-color-dd);
     background-color: var(--main-color-ll);
+}
+.add-source-button{
+    margin: 0px;
+    /* background-color: darkcyan; */
+    color: darkcyan;
+    padding: 0;
+    border: 2px solid darkcyan;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    height: 32px;
+    font-size: large;
+}
+.add-source-button:hover {
+    background-color: darkcyan;
+    color: wheat;
 }
 
 .button-sort-table {

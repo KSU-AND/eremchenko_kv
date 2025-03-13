@@ -134,6 +134,35 @@ function toggleTheoryBlocksOverlay(){
     theoryBlocksDiv.classList.toggle("active");
 }
 
+function postAddSource(button) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', document.URL, true);
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            let help_div = document.createElement('div');
+            help_div.innerHTML = xhr.response;
+            source = help_div.firstElementChild;
+            document.getElementById('sources').appendChild(source);
+            source.querySelector(".source").focus();
+        }
+    }
+    xhr.send(new FormData(button.parentNode.parentNode));
+};
+function postSource(current_source) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', document.URL, true);
+    
+    xhr.onload = function() {
+        let comment_form = current_source.parentNode;
+        if (xhr.status === 200) {   
+            animate(current_source, 'comment-animation');
+            if (current_source.value == "")
+                document.getElementById('sources').removeChild(comment_form);
+        }
+    }
+    xhr.send(new FormData(current_source.parentNode));
+}
+
 function postTheoryBlocks(button) {
     let xhr = new XMLHttpRequest();
     xhr.open('POST', document.URL, true);
