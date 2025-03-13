@@ -5,3 +5,4 @@ python-dotenv==1.0.1
 gunicorn==23.0.0
 certbot==3.0.1
 certbot-nginx==3.0.1
+pyTelegramBotAPI==4.26.0
