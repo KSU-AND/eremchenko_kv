@@ -1,7 +1,9 @@
 from django.views import View
 from django.shortcuts import render
 from django.http import HttpResponse
+import telebot
 
+from eremchenko_kv.settings import TLG_TOKEN, TLG_ADMIN_ID
 from ..models.language import Language
 from ..models.area import Area
 from ..models.genus import Genus
@@ -60,6 +62,7 @@ class LanguageView(View):
 
     def post(self, request, code):
         current_language = Language.objects.get(code=code)
+        bot = telebot.TeleBot(TLG_TOKEN)
 
         if request.POST.get("area") is not None:
             area_form = AreaForm(request.POST, instance=current_language)
@@ -105,6 +108,14 @@ class LanguageView(View):
             progress_form.save()
             return HttpResponse(status=200)
         if request.POST.get("add_comment") is not None:
+            if not request.user.username == "mendatsium":
+                try:
+                    bot_msg = "Новый комментарий:\n"
+                    bot_msg += f"*Язык*: {current_language.name}\n"
+                    bot_msg += f"*Пользователь*: {request.user}\n"
+                    bot.send_message(TLG_ADMIN_ID, bot_msg, "markdown")
+                except: pass
+
             new_comment = Comment.objects.create(lang=current_language, user=request.user)
             new_comment_form = CommentForm(instance=new_comment, prefix=str(new_comment.id))
             return render(request, "comment_form.html", {"user": request.user,
