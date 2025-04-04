@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models import Q, Value, Case, When, CharField
+from django.db.models.functions import Concat
 from django.utils.translation import gettext_lazy as gtl
 
 from .area import Area
@@ -64,3 +66,31 @@ class Language(models.Model):
 
     def __str__(self) -> str:
         return self.name
+    
+    @classmethod
+    def get_yes_languages(cls):
+        langs = (
+            cls.objects.select_related("genus", "family")
+            .order_by("name")
+            .filter(
+                Q(mm="YES") | Q(ma="YES") | Q(am="YES") | Q(aa="YES") |
+                Q(mm="?") | Q(ma="?") | Q(am="?") | Q(aa="?")
+            )
+            .annotate(
+                yes_marker=Concat(
+                    Case(When(mm="YES", then=Value("mm ")), default=Value("")),
+                    Case(When(ma="YES", then=Value("ma ")), default=Value("")),
+                    Case(When(am="YES", then=Value("am ")), default=Value("")),
+                    Case(When(aa="YES", then=Value("aa ")), default=Value("")),
+                    output_field=CharField(),
+                ),
+                question_marker=Concat(
+                    Case(When(mm="?", then=Value("mm ")), default=Value("")),
+                    Case(When(ma="?", then=Value("ma ")), default=Value("")),
+                    Case(When(am="?", then=Value("am ")), default=Value("")),
+                    Case(When(aa="?", then=Value("aa ")), default=Value("")),
+                    output_field=CharField(),
+                )
+            )
+        )
+        return langs

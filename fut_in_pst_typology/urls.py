@@ -1,6 +1,6 @@
 from django.urls import path, include
 
-from .views import home, summary, statistics, theory, biblio
+from .views import home, summary, analysis, statistics, theory, biblio
 from .views import language, family, genus, area
 
 
@@ -16,6 +16,7 @@ fpt_url_patterns = [
     path('', home.HomeView.as_view(), name="fpt"),
     
     path('summary/', summary.SummaryView.as_view(), name="fpt.summary"),
+    path('analysis/', analysis.AnalysisView.as_view(), name="fpt.analysis"),
     path('statistics/', statistics.StatisticsView.as_view(), name="fpt.statistics"),
     path('biblio/', biblio.BiblioView.as_view(), name="fpt.biblio"),
     path('theory/', include(theory_url_patterns)),

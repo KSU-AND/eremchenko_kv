@@ -1,0 +1,17 @@
+<table class="home">
+    <thead>
+      <tr>
+        <th class="code">{% include "block/sort_button.html" %}ST</th>
+        <th class="lang">{% include "block/sort_button.html" with az=1 %}Язык</th>
+        <th class="area">{% include "block/sort_button.html" %}Ареал</th>
+        <th class="ts">{% include "block/sort_button.html" %}Маркер</th>
+        <th class="tb">{% include "block/sort_button.html" %}Теор. блоки</th>
+      </tr>
+    </thead>
+    <tbody class="home">
+      {% for l in languages %}
+      {% url 'fpt.language' l.code as lang_url %}
+        {% include "analysis/language_row.html" %}
+      {% endfor %}
+    </tbody>
+  </table>
