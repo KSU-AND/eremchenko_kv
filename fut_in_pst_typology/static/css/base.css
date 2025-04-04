@@ -172,6 +172,10 @@ table.home {
     }
     .area {width: 10%;}
     .ts {width: 10%;}
+    .tb {
+        width: 40%;
+        text-align: left;
+    }
     .tm {width: 7%;}
     .tm:nth-child(even) {border-right: 3px solid var(--main-color);}
     .tm:nth-child(odd){border-left: 3px solid var(--main-color);}

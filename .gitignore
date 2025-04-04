@@ -1,7 +1,9 @@
 .vscode/
+*.code-workspace
 .venv/
 __pycache__/
 .env
 *.sqlite3
 /static/
 /media/
+dump*
