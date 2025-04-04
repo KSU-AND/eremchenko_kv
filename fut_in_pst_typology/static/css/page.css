@@ -150,7 +150,7 @@ table.language-info {
         margin: 0px;
     }
 }
-
+pre {white-space: pre-wrap;}
 
 .theoryBlock {
     /* border: 1px solid red; */

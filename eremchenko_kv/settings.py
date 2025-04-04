@@ -4,6 +4,7 @@ Django settings for eremchenko_kv project.
 import os
 from pathlib import Path
 from dotenv import dotenv_values
+import telebot
 
 
 secrets = dotenv_values()
@@ -12,10 +13,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = secrets.get('SECRET_KEY')
 
+TLG_BOT = telebot.TeleBot(secrets.get("TLG_TOKEN"))
+TLG_ADMIN_ID = secrets.get("TLG_ADMIN_ID")
+
 DEBUG = secrets.get('DEBUG') == 'True'
 
 if DEBUG:
     ALLOWED_HOSTS = ['127.0.0.1']
+    TLG_ADMIN_ID = secrets.get("TLG_TESTER_ID")
 else:
     ALLOWED_HOSTS = [secrets.get('MAIN_HOST')]
 
